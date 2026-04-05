@@ -8,600 +8,186 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
-    --bg:      #09090b;
-    --bg2:     #111115;
-    --bg3:     #1a1a20;
-    --line:    rgba(255,255,255,0.06);
-    --line2:   rgba(255,255,255,0.11);
-    --accent:  #00e5a0;
-    --accent2: #0070f3;
-    --text:    #e8eaed;
-    --text2:   #8a9099;
-    --text3:   #50555f;
-    --mono:    'DM Mono', monospace;
-    --sans:    'Syne', sans-serif;
-    --rad:     3px;
+    --bg:#09090b; --bg2:#111115; --bg3:#1a1a20;
+    --line:rgba(255,255,255,0.06); --line2:rgba(255,255,255,0.11);
+    --accent:#00e5a0; --text:#e8eaed; --text2:#8a9099; --text3:#50555f;
+    --mono:'DM Mono',monospace; --sans:'Syne',sans-serif; --rad:3px;
   }
-
   html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--sans);
-    font-size: 16px;
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
-
+  body { background:var(--bg); color:var(--text); font-family:var(--sans); font-size:16px; line-height:1.6; overflow-x:hidden; }
   body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(var(--line) 1px, transparent 1px),
-      linear-gradient(90deg, var(--line) 1px, transparent 1px);
-    background-size: 64px 64px;
-    pointer-events: none;
-    z-index: 0;
+    content:''; position:fixed; inset:0;
+    background-image: linear-gradient(var(--line) 1px,transparent 1px), linear-gradient(90deg,var(--line) 1px,transparent 1px);
+    background-size:64px 64px; pointer-events:none; z-index:0;
   }
-
-  /* NAV */
   nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.1rem 3rem;
-    border-bottom: 1px solid var(--line);
-    background: rgba(9,9,11,0.88);
-    backdrop-filter: blur(14px);
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:1.1rem 3rem; border-bottom:1px solid var(--line);
+    background:rgba(9,9,11,0.88); backdrop-filter:blur(14px);
   }
-
-  .nav-logo {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--accent);
-    letter-spacing: 0.1em;
-    text-decoration: none;
-  }
-
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
-
-  .nav-links a {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--text2);
-    text-decoration: none;
-    letter-spacing: 0.07em;
-    transition: color 0.2s;
-  }
-
-  .nav-links a:hover { color: var(--accent); }
-
-  /* HERO */
+  .nav-logo { font-family:var(--mono); font-size:12px; color:var(--accent); letter-spacing:0.1em; text-decoration:none; }
+  .nav-links { display:flex; gap:2rem; list-style:none; }
+  .nav-links a { font-family:var(--mono); font-size:11px; color:var(--text2); text-decoration:none; letter-spacing:0.07em; transition:color 0.2s; }
+  .nav-links a:hover { color:var(--accent); }
   .hero {
-    position: relative;
-    z-index: 1;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 8rem 3rem 4rem;
-    max-width: 1100px;
-    margin: 0 auto;
+    position:relative; z-index:1; min-height:100vh;
+    display:flex; flex-direction:column; justify-content:center;
+    padding:8rem 3rem 4rem; max-width:1100px; margin:0 auto; overflow:visible;
   }
-
   .hero-eyebrow {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--accent);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
+    font-family:var(--mono); font-size:11px; color:var(--accent);
+    letter-spacing:0.2em; text-transform:uppercase; margin-bottom:1.5rem;
+    display:flex; align-items:center; gap:0.75rem;
   }
-
-  .hero-eyebrow::before {
-    content: '';
-    display: block;
-    width: 28px;
-    height: 1px;
-    background: var(--accent);
-  }
-
-  h1 {
-    font-size: clamp(3rem, 7vw, 5.5rem);
-    font-weight: 800;
-    line-height: 1.0;
-    letter-spacing: -0.03em;
-    margin-bottom: 0.25rem;
-  }
-
-  .name-muted { color: var(--text2); font-weight: 400; }
-
-  .hero-sub {
-    font-size: clamp(0.95rem, 1.8vw, 1.15rem);
-    color: var(--text2);
-    margin: 2rem 0;
-    max-width: 540px;
-    line-height: 1.75;
-    font-weight: 400;
-  }
-
-  .hero-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2.5rem; }
-
-  .tag {
-    font-family: var(--mono);
-    font-size: 11px;
-    padding: 4px 11px;
-    border: 1px solid var(--line2);
-    border-radius: var(--rad);
-    color: var(--text2);
-    letter-spacing: 0.04em;
-    transition: border-color 0.2s, color 0.2s;
-  }
-
-  .tag:hover { border-color: var(--accent); color: var(--accent); }
-  .tag-accent { border-color: var(--accent); color: var(--accent); }
-
-  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
-
-  .btn {
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    padding: 11px 26px;
-    border-radius: var(--rad);
-    text-decoration: none;
-    transition: all 0.2s;
-    display: inline-block;
-    cursor: pointer;
-    border: none;
-  }
-
-  .btn-primary { background: var(--accent); color: #000; font-weight: 500; }
-  .btn-primary:hover { background: #00ffc3; }
-  .btn-outline { border: 1px solid var(--line2); color: var(--text2); background: transparent; }
-  .btn-outline:hover { border-color: var(--text); color: var(--text); }
-
-  .hero-stats {
-    display: flex;
-    gap: 3rem;
-    margin-top: 4rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--line);
-    flex-wrap: wrap;
-  }
-
-  .stat-num { font-size: 1.9rem; font-weight: 700; line-height: 1; }
-  .stat-num span { color: var(--accent); }
-  .stat-label { font-family: var(--mono); font-size: 10px; color: var(--text3); letter-spacing: 0.08em; margin-top: 4px; }
-
-  /* SECTIONS */
-  section {
-    position: relative;
-    z-index: 1;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 5rem 3rem;
-  }
-
-  .divider {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 3rem;
-    height: 1px;
-    background: var(--line);
-    position: relative;
-    z-index: 1;
-  }
-
-  .section-eye {
-    font-family: var(--mono);
-    font-size: 10px;
-    color: var(--accent);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 0.6rem;
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-  }
-
-  .section-eye::before {
-    content: '';
-    display: block;
-    width: 20px;
-    height: 1px;
-    background: var(--accent);
-  }
-
-  h2 {
-    font-size: clamp(1.6rem, 3vw, 2.4rem);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    margin-bottom: 0.75rem;
-  }
-
-  .section-intro {
-    font-size: 0.9rem;
-    color: var(--text2);
-    max-width: 600px;
-    margin-bottom: 2.5rem;
-    line-height: 1.7;
-  }
-
-  /* FILTER TABS */
-  .filter-row {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    margin-bottom: 2rem;
-  }
-
-  .filter-btn {
-    font-family: var(--mono);
-    font-size: 11px;
-    padding: 6px 14px;
-    border: 1px solid var(--line2);
-    border-radius: var(--rad);
-    background: transparent;
-    color: var(--text2);
-    cursor: pointer;
-    letter-spacing: 0.05em;
-    transition: all 0.2s;
-  }
-
-  .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
-  .filter-btn.active { background: var(--accent); color: #000; border-color: var(--accent); font-weight: 500; }
-
-  /* PROJECT GRID */
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
-    gap: 1px;
-    background: var(--line2);
-    border: 1px solid var(--line2);
-  }
-
-  .project-card {
-    background: var(--bg2);
-    padding: 1.75rem;
-    transition: background 0.22s;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .project-card:hover { background: var(--bg3); }
-  .project-card.hidden { display: none; }
-
-  /* PHOTO AREA */
-  .project-photo {
-    width: 100%;
-    aspect-ratio: 16/9;
-    margin-bottom: 1.25rem;
-    border-radius: var(--rad);
-    overflow: hidden;
-    background: var(--bg3);
-    border: 1px solid var(--line);
-    position: relative;
-    flex-shrink: 0;
-  }
-
-  .project-photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  /* PLACEHOLDER shown when no photo */
-  .project-photo .placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-  }
-
-  .placeholder-icon {
-    width: 36px;
-    height: 36px;
-    opacity: 0.18;
-  }
-
-  .placeholder-text {
-    font-family: var(--mono);
-    font-size: 10px;
-    color: var(--text3);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-
-  .project-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.6rem;
-  }
-
-  .project-cat {
-    font-family: var(--mono);
-    font-size: 10px;
-    color: var(--text3);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-
-  .project-cat.robotics { color: #00e5a0; }
-  .project-cat.embedded { color: #7c6aff; }
-  .project-cat.systems  { color: #f0a050; }
-
-  .project-date {
-    font-family: var(--mono);
-    font-size: 10px;
-    color: var(--text3);
-  }
-
-  .project-name {
-    font-size: 1rem;
-    font-weight: 600;
-    margin-bottom: 0.6rem;
-    line-height: 1.35;
-    color: var(--text);
-  }
-
-  .project-desc {
-    font-size: 0.84rem;
-    color: var(--text2);
-    line-height: 1.65;
-    margin-bottom: 1rem;
-    flex: 1;
-  }
-
-  .project-stack {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem;
-    margin-bottom: 1rem;
-  }
-
-  .stack-pill {
-    font-family: var(--mono);
-    font-size: 10px;
-    padding: 3px 8px;
-    background: rgba(0,229,160,0.07);
-    border: 1px solid rgba(0,229,160,0.18);
-    border-radius: var(--rad);
-    color: var(--accent);
-    letter-spacing: 0.03em;
-  }
-
-  .project-highlight {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--text3);
-    padding-top: 0.9rem;
-    border-top: 1px solid var(--line);
-    line-height: 1.5;
-  }
-
-  .project-highlight strong { color: var(--text2); font-weight: 400; }
-
-  /* ADD MEDIA NOTE — visible to you when editing */
-  .media-note {
-    display: none; /* hidden on live site — just a guide in the code */
-  }
-
-  /* SKILLS */
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1.25rem;
-  }
-
-  .skill-group {
-    background: var(--bg2);
-    border: 1px solid var(--line);
-    padding: 1.35rem;
-    border-radius: var(--rad);
-  }
-
-  .skill-group-title {
-    font-family: var(--mono);
-    font-size: 10px;
-    color: var(--accent);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 0.9rem;
-    padding-bottom: 0.7rem;
-    border-bottom: 1px solid var(--line);
-  }
-
-  .skill-list { display: flex; flex-wrap: wrap; gap: 0.35rem; }
-
-  .skill-chip {
-    font-family: var(--mono);
-    font-size: 11px;
-    padding: 3px 9px;
-    background: var(--bg3);
-    border: 1px solid var(--line);
-    border-radius: var(--rad);
-    color: var(--text2);
-  }
-
-  /* ABOUT */
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: start;
-  }
-
-  .about-text p {
-    font-size: 0.9rem;
-    color: var(--text2);
-    line-height: 1.85;
-    margin-bottom: 1.1rem;
-  }
-
-  .about-text p strong { color: var(--text); font-weight: 600; }
-
-  .info-table { width: 100%; border-collapse: collapse; }
-
-  .info-table tr { border-bottom: 1px solid var(--line); }
-
-  .info-table td {
-    padding: 0.7rem 0;
-    font-size: 0.85rem;
-  }
-
-  .info-table td:first-child {
-    font-family: var(--mono);
-    font-size: 10px;
-    color: var(--text3);
-    letter-spacing: 0.08em;
-    width: 38%;
-    text-transform: uppercase;
-  }
-
-  .info-table td:last-child { color: var(--text2); }
-
-  .info-table a { color: var(--accent); text-decoration: none; }
-
-  /* CONTACT */
-  .contact-box {
-    background: var(--bg2);
-    border: 1px solid var(--line2);
-    padding: 2.5rem 3rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-    border-radius: var(--rad);
-  }
-
-  .contact-heading {
-    font-size: 1.35rem;
-    font-weight: 700;
-    max-width: 340px;
-    line-height: 1.4;
-  }
-
-  .contact-links { display: flex; flex-direction: column; gap: 0.7rem; }
-
-  .contact-link {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--text2);
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    transition: color 0.2s;
-  }
-
-  .contact-link:hover { color: var(--accent); }
-
-  .contact-link-label {
-    font-size: 10px;
-    color: var(--text3);
-    width: 64px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  /* FOOTER */
-  footer {
-    position: relative;
-    z-index: 1;
-    border-top: 1px solid var(--line);
-    padding: 1.75rem 3rem;
-    max-width: 1100px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  footer p {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--text3);
-    letter-spacing: 0.05em;
-  }
-
-  /* ANIMATIONS */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  .hero > * { animation: fadeUp 0.55s ease both; }
-  .hero > *:nth-child(1) { animation-delay: 0.05s; }
-  .hero > *:nth-child(2) { animation-delay: 0.12s; }
-  .hero > *:nth-child(3) { animation-delay: 0.19s; }
-  .hero > *:nth-child(4) { animation-delay: 0.26s; }
-  .hero > *:nth-child(5) { animation-delay: 0.33s; }
-  .hero > *:nth-child(6) { animation-delay: 0.40s; }
-
-  /* RESPONSIVE */
-  @media (max-width: 768px) {
-    nav { padding: 1rem 1.25rem; }
-    .nav-links { display: none; }
-    .hero, section { padding-left: 1.25rem; padding-right: 1.25rem; }
-    .hero { padding-top: 5.5rem; }
-    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .contact-box { padding: 1.75rem; }
-    footer { padding: 1.25rem; }
-    .hero-stats { gap: 1.5rem; }
-    .divider { padding: 0 1.25rem; }
+  .hero-eyebrow::before { content:''; display:block; width:28px; height:1px; background:var(--accent); flex-shrink:0; }
+  .hero-name { line-height:1.05; letter-spacing:-0.03em; margin-bottom:0.25rem; overflow:visible; padding-bottom:0.15em; }
+  .hero-name .first { display:block; font-size:clamp(2.8rem,5.5vw,4.5rem); font-weight:800; overflow:visible; }
+  .hero-name .rest { display:block; font-size:clamp(1.5rem,3vw,2.4rem); font-weight:400; color:var(--text2); overflow:visible; }
+  .hero-sub { font-size:clamp(0.875rem,1.5vw,1rem); color:var(--text2); margin:1.75rem 0; max-width:560px; line-height:1.8; font-weight:400; }
+  .hero-tags { display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:2rem; }
+  .tag { font-family:var(--mono); font-size:11px; padding:4px 11px; border:1px solid var(--line2); border-radius:var(--rad); color:var(--text2); letter-spacing:0.04em; transition:border-color 0.2s,color 0.2s; }
+  .tag:hover { border-color:var(--accent); color:var(--accent); }
+  .tag-accent { border-color:var(--accent); color:var(--accent); }
+  .hero-cta { display:flex; gap:1rem; flex-wrap:wrap; }
+  .btn { font-family:var(--mono); font-size:11px; letter-spacing:0.1em; padding:11px 26px; border-radius:var(--rad); text-decoration:none; transition:all 0.2s; display:inline-block; cursor:pointer; border:none; }
+  .btn-primary { background:var(--accent); color:#000; font-weight:500; }
+  .btn-primary:hover { background:#00ffc3; }
+  .btn-outline { border:1px solid var(--line2); color:var(--text2); background:transparent; }
+  .btn-outline:hover { border-color:var(--text); color:var(--text); }
+  .hero-stats { display:flex; gap:3rem; margin-top:3.5rem; padding-top:2rem; border-top:1px solid var(--line); flex-wrap:wrap; }
+  .stat-num { font-size:1.9rem; font-weight:700; line-height:1; }
+  .stat-num span { color:var(--accent); }
+  .stat-label { font-family:var(--mono); font-size:10px; color:var(--text3); letter-spacing:0.08em; margin-top:4px; }
+  section { position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:5rem 3rem; }
+  .divider { max-width:1100px; margin:0 auto; padding:0 3rem; height:1px; background:var(--line); position:relative; z-index:1; }
+  .section-eye { font-family:var(--mono); font-size:10px; color:var(--accent); letter-spacing:0.2em; text-transform:uppercase; margin-bottom:0.6rem; display:flex; align-items:center; gap:0.6rem; }
+  .section-eye::before { content:''; display:block; width:20px; height:1px; background:var(--accent); }
+  h2 { font-size:clamp(1.6rem,3vw,2.4rem); font-weight:700; letter-spacing:-0.02em; margin-bottom:0.75rem; }
+  .section-intro { font-size:0.9rem; color:var(--text2); max-width:600px; margin-bottom:2.5rem; line-height:1.7; }
+  .filter-row { display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:2rem; }
+  .filter-btn { font-family:var(--mono); font-size:11px; padding:6px 14px; border:1px solid var(--line2); border-radius:var(--rad); background:transparent; color:var(--text2); cursor:pointer; letter-spacing:0.05em; transition:all 0.2s; }
+  .filter-btn:hover { border-color:var(--accent); color:var(--accent); }
+  .filter-btn.active { background:var(--accent); color:#000; border-color:var(--accent); font-weight:500; }
+  .projects-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:1px; background:var(--line2); border:1px solid var(--line2); }
+  .project-card { background:var(--bg2); padding:1.75rem; transition:background 0.22s; display:flex; flex-direction:column; }
+  .project-card:hover { background:var(--bg3); }
+  .project-card.hidden { display:none; }
+  .project-photo { width:100%; aspect-ratio:16/9; margin-bottom:1.25rem; border-radius:var(--rad); overflow:hidden; background:var(--bg3); border:1px solid var(--line); flex-shrink:0; }
+  .project-photo img { width:100%; height:100%; object-fit:cover; display:block; }
+  .project-photo .placeholder { width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.5rem; }
+  .placeholder-icon { width:32px; height:32px; opacity:0.15; }
+  .placeholder-text { font-family:var(--mono); font-size:10px; color:var(--text3); letter-spacing:0.1em; text-transform:uppercase; }
+  .project-meta { display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem; }
+  .project-cat { font-family:var(--mono); font-size:10px; color:var(--text3); letter-spacing:0.1em; text-transform:uppercase; }
+  .project-cat.robotics { color:#00e5a0; }
+  .project-cat.embedded { color:#7c6aff; }
+  .project-cat.systems  { color:#f0a050; }
+  .project-date { font-family:var(--mono); font-size:10px; color:var(--text3); }
+  .project-name { font-size:1rem; font-weight:600; margin-bottom:0.6rem; line-height:1.35; }
+  .project-desc { font-size:0.84rem; color:var(--text2); line-height:1.65; margin-bottom:1rem; flex:1; }
+  .project-stack { display:flex; flex-wrap:wrap; gap:0.35rem; margin-bottom:1rem; }
+  .stack-pill { font-family:var(--mono); font-size:10px; padding:3px 8px; background:rgba(0,229,160,0.07); border:1px solid rgba(0,229,160,0.18); border-radius:var(--rad); color:var(--accent); }
+  .project-highlight { font-family:var(--mono); font-size:11px; color:var(--text3); padding-top:0.9rem; border-top:1px solid var(--line); line-height:1.5; }
+  .project-highlight strong { color:var(--text2); font-weight:400; }
+  .skills-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1.25rem; }
+  .skill-group { background:var(--bg2); border:1px solid var(--line); padding:1.35rem; border-radius:var(--rad); }
+  .skill-group-title { font-family:var(--mono); font-size:10px; color:var(--accent); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:0.9rem; padding-bottom:0.7rem; border-bottom:1px solid var(--line); }
+  .skill-list { display:flex; flex-wrap:wrap; gap:0.35rem; }
+  .skill-chip { font-family:var(--mono); font-size:11px; padding:3px 9px; background:var(--bg3); border:1px solid var(--line); border-radius:var(--rad); color:var(--text2); }
+  .timeline { position:relative; padding-left:1.5rem; }
+  .timeline::before { content:''; position:absolute; left:0; top:8px; bottom:8px; width:1px; background:var(--line2); }
+  .timeline-item { position:relative; margin-bottom:2.5rem; padding-left:1.5rem; }
+  .timeline-item::before { content:''; position:absolute; left:-1.5rem; top:7px; width:7px; height:7px; border-radius:50%; background:var(--bg); border:1.5px solid var(--accent); }
+  .timeline-period { font-family:var(--mono); font-size:10px; color:var(--text3); letter-spacing:0.08em; margin-bottom:0.3rem; }
+  .timeline-role { font-size:1rem; font-weight:600; margin-bottom:0.2rem; }
+  .timeline-company { font-size:0.85rem; color:var(--text2); margin-bottom:0.2rem; }
+  .timeline-location { font-family:var(--mono); font-size:10px; color:var(--text3); margin-bottom:0.75rem; }
+  .timeline-note { font-size:0.84rem; color:var(--text3); font-style:italic; margin-bottom:0.6rem; line-height:1.5; }
+  .timeline-points { list-style:none; display:flex; flex-direction:column; gap:0.4rem; }
+  .timeline-points li { font-size:0.84rem; color:var(--text2); padding-left:1rem; position:relative; line-height:1.6; }
+  .timeline-points li::before { content:''; position:absolute; left:0; top:0.55em; width:4px; height:4px; border-radius:50%; background:var(--text3); }
+  .timeline-sub { margin-top:1.5rem; padding-top:1.5rem; border-top:1px solid var(--line); }
+  .edu-grid { display:flex; flex-direction:column; gap:1.5rem; }
+  .edu-card { background:var(--bg2); border:1px solid var(--line); padding:1.5rem 1.75rem; border-radius:var(--rad); }
+  .edu-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:0.35rem; flex-wrap:wrap; gap:0.5rem; }
+  .edu-school { font-size:1rem; font-weight:600; }
+  .edu-years { font-family:var(--mono); font-size:11px; color:var(--text3); letter-spacing:0.06em; }
+  .edu-degree { font-size:0.875rem; color:var(--accent); margin-bottom:0.75rem; font-family:var(--mono); letter-spacing:0.04em; }
+  .edu-body { font-size:0.84rem; color:var(--text2); line-height:1.65; }
+  .edu-body p { margin-bottom:0.5rem; }
+  .edu-body p:last-child { margin-bottom:0; }
+  .edu-label { font-family:var(--mono); font-size:10px; color:var(--text3); letter-spacing:0.1em; text-transform:uppercase; margin-top:0.75rem; margin-bottom:0.3rem; }
+  .cert-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1rem; }
+  .cert-card { background:var(--bg2); border:1px solid var(--line); padding:1.25rem 1.5rem; border-radius:var(--rad); display:flex; flex-direction:column; gap:0.3rem; }
+  .cert-name { font-size:0.9rem; font-weight:600; line-height:1.35; }
+  .cert-issuer { font-family:var(--mono); font-size:11px; color:var(--text2); }
+  .cert-meta { font-family:var(--mono); font-size:10px; color:var(--text3); margin-top:0.2rem; }
+  .cert-badge { display:inline-block; font-family:var(--mono); font-size:10px; padding:2px 8px; border-radius:var(--rad); margin-top:0.5rem; align-self:flex-start; }
+  .cert-badge.progress { background:rgba(240,160,80,0.12); border:1px solid rgba(240,160,80,0.3); color:#f0a050; }
+  .cert-badge.done { background:rgba(0,229,160,0.08); border:1px solid rgba(0,229,160,0.2); color:var(--accent); }
+  .awards-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:1rem; }
+  .award-card { background:var(--bg2); border:1px solid var(--line); padding:1.25rem 1.5rem; border-radius:var(--rad); }
+  .award-name { font-size:0.9rem; font-weight:600; margin-bottom:0.25rem; }
+  .award-issuer { font-family:var(--mono); font-size:11px; color:var(--text3); }
+  .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:start; }
+  .about-text p { font-size:0.9rem; color:var(--text2); line-height:1.85; margin-bottom:1rem; }
+  .about-text p:last-child { margin-bottom:0; }
+  .info-table { width:100%; border-collapse:collapse; }
+  .info-table tr { border-bottom:1px solid var(--line); }
+  .info-table td { padding:0.7rem 0; font-size:0.85rem; vertical-align:top; }
+  .info-table td:first-child { font-family:var(--mono); font-size:10px; color:var(--text3); letter-spacing:0.08em; width:38%; text-transform:uppercase; padding-top:0.8rem; }
+  .info-table td:last-child { color:var(--text2); }
+  .info-table a { color:var(--accent); text-decoration:none; }
+  .contact-box { background:var(--bg2); border:1px solid var(--line2); padding:2.5rem 3rem; display:flex; justify-content:space-between; align-items:center; gap:2rem; flex-wrap:wrap; border-radius:var(--rad); }
+  .contact-heading { font-size:1.35rem; font-weight:700; max-width:340px; line-height:1.4; }
+  .contact-links { display:flex; flex-direction:column; gap:0.7rem; }
+  .contact-link { font-family:var(--mono); font-size:12px; color:var(--text2); text-decoration:none; display:flex; align-items:center; gap:0.75rem; transition:color 0.2s; }
+  .contact-link:hover { color:var(--accent); }
+  .contact-link-label { font-size:10px; color:var(--text3); width:64px; letter-spacing:0.08em; text-transform:uppercase; }
+  footer { position:relative; z-index:1; border-top:1px solid var(--line); padding:1.75rem 3rem; max-width:1100px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap; }
+  footer p { font-family:var(--mono); font-size:11px; color:var(--text3); letter-spacing:0.05em; }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
+  .hero > * { animation:fadeUp 0.55s ease both; }
+  .hero > *:nth-child(1){animation-delay:0.05s} .hero > *:nth-child(2){animation-delay:0.12s}
+  .hero > *:nth-child(3){animation-delay:0.19s} .hero > *:nth-child(4){animation-delay:0.26s}
+  .hero > *:nth-child(5){animation-delay:0.33s} .hero > *:nth-child(6){animation-delay:0.40s}
+  @media(max-width:768px){
+    nav{padding:1rem 1.25rem} .nav-links{display:none}
+    .hero,section{padding-left:1.25rem;padding-right:1.25rem} .hero{padding-top:5.5rem}
+    .about-grid{grid-template-columns:1fr;gap:2rem} .contact-box{padding:1.75rem}
+    footer{padding:1.25rem} .hero-stats{gap:1.5rem} .divider{padding:0 1.25rem}
   }
 </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════
-     NAV
-════════════════════════════════════════ -->
 <nav>
   <a class="nav-logo" href="#">MBIT</a>
   <ul class="nav-links">
     <li><a href="#projects">projects</a></li>
     <li><a href="#skills">skills</a></li>
+    <li><a href="#experience">experience</a></li>
+    <li><a href="#education">education</a></li>
     <li><a href="#about">about</a></li>
     <li><a href="#contact">contact</a></li>
   </ul>
 </nav>
 
-<!-- ═══════════════════════════════════════
-     HERO
-════════════════════════════════════════ -->
 <div class="hero">
   <div class="hero-eyebrow">Mechatronics &amp; Robotics Engineer</div>
-  <h1>Murad<br><span class="name-muted">Bin Inam Tarar</span></h1>
-  <p class="hero-sub">
-    Building automated systems from concept to commissioning — Siemens S7-1500 PLCs and WinCC SCADA through to ROS2 robotics platforms and custom mechatronic hardware. Based in Amsterdam, Netherlands.
-  </p>
+  <div class="hero-name">
+    <span class="first">Murad</span>
+    <span class="rest">Bin Inam Tarar</span>
+  </div>
+  <p class="hero-sub">I build automated systems that work in the real world, from Siemens PLC panels and WinCC SCADA to ROS2 robotics platforms and custom mechatronic hardware. Based in Amsterdam, Netherlands.</p>
   <div class="hero-tags">
     <span class="tag tag-accent">Available for hire</span>
-    <span class="tag">Amsterdam, NL</span>
+    <span class="tag">Amsterdam, Netherlands</span>
     <span class="tag">Dutch Residence Permit</span>
-    <span class="tag">MSc Advanced Robotics — QMUL</span>
-    <span class="tag">BEng Mechatronics — NUST</span>
+    <span class="tag">MSc Advanced Robotics, QMUL</span>
+    <span class="tag">BEng Mechatronics, NUST</span>
     <span class="tag">7+ years experience</span>
   </div>
   <div class="hero-cta">
@@ -610,470 +196,155 @@
     <a href="#contact" class="btn btn-outline">Get in touch</a>
   </div>
   <div class="hero-stats">
-    <div>
-      <div class="stat-num">13</div>
-      <div class="stat-label">Projects</div>
-    </div>
-    <div>
-      <div class="stat-num">7<span>+</span></div>
-      <div class="stat-label">Years experience</div>
-    </div>
-    <div>
-      <div class="stat-num">98.9<span>%</span></div>
-      <div class="stat-label">AI model accuracy</div>
-    </div>
-    <div>
-      <div class="stat-num">23<span>min</span></div>
-      <div class="stat-label">Drone endurance</div>
-    </div>
+    <div><div class="stat-num">13</div><div class="stat-label">Projects</div></div>
+    <div><div class="stat-num">7<span>+</span></div><div class="stat-label">Years experience</div></div>
+    <div><div class="stat-num">98.9<span>%</span></div><div class="stat-label">AI model accuracy</div></div>
+    <div><div class="stat-num">23<span>min</span></div><div class="stat-label">Drone endurance</div></div>
   </div>
 </div>
 
 <div class="divider"></div>
 
-<!-- ═══════════════════════════════════════
-     PROJECTS
-════════════════════════════════════════ -->
 <section id="projects">
   <div class="section-eye">Engineering work</div>
   <h2>Projects</h2>
-  <p class="section-intro">13 projects across robotics, embedded AI, control systems, and large-scale engineering delivery — spanning academic research, defence, and industrial automation.</p>
-
-  <!-- FILTER -->
+  <p class="section-intro">Projects across robotics, embedded AI, control systems, and large-scale engineering delivery — spanning academic research, defence, and industrial automation.</p>
   <div class="filter-row">
-    <button class="filter-btn active" onclick="filterProjects('all', this)">All (13)</button>
-    <button class="filter-btn" onclick="filterProjects('robotics', this)">Robotics &amp; Control (7)</button>
-    <button class="filter-btn" onclick="filterProjects('embedded', this)">Embedded &amp; AI (4)</button>
-    <button class="filter-btn" onclick="filterProjects('systems', this)">Systems Engineering (2)</button>
+    <button class="filter-btn active" onclick="filterProjects('all',this)">All (13)</button>
+    <button class="filter-btn" onclick="filterProjects('robotics',this)">Robotics &amp; Control (7)</button>
+    <button class="filter-btn" onclick="filterProjects('embedded',this)">Embedded &amp; AI (4)</button>
+    <button class="filter-btn" onclick="filterProjects('systems',this)">Systems Engineering (2)</button>
   </div>
+  <div class="projects-grid">
 
-  <div class="projects-grid" id="projectsGrid">
-
-    <!-- ─────────────────────────────────
-         PROJECT 1 — 5-DOF Robotic Arm
-         TO ADD PHOTO: replace the <div class="placeholder"> block inside
-         .project-photo with: <img src="robotic-arm.jpg" alt="5-DOF Robotic Arm">
-         Recommended filename: robotic-arm.jpg
-    ───────────────────────────────── -->
+    <!-- PROJECT 1: TO ADD PHOTO replace placeholder div with: <img src="robotic-arm.jpg" alt="5-DOF Robotic Arm"> -->
     <div class="project-card" data-cat="robotics">
-      <div class="project-photo">
-        <!-- PHOTO PLACEHOLDER — replace with <img src="robotic-arm.jpg" alt="..."> when ready -->
-        <div class="placeholder">
-          <svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-          <span class="placeholder-text">Photo coming soon</span>
-        </div>
-      </div>
-      <div class="project-meta">
-        <span class="project-cat robotics">Robotics</span>
-        <span class="project-date">Jun – Sep 2023</span>
-      </div>
+      <div class="project-photo"><div class="placeholder"><svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg><span class="placeholder-text">Photo coming soon</span></div></div>
+      <div class="project-meta"><span class="project-cat robotics">Robotics</span><span class="project-date">Jun – Sep 2023</span></div>
       <div class="project-name">Multi-Control 5-DOF Robotic Arm</div>
-      <div class="project-desc">
-        Fully functional 5-DOF robotic manipulator using MG996R and SG90 servo motors. All structural components designed in SolidWorks and 3D-printed in PLA. Three independent control modes: Bluetooth Android app (MIT App Inventor) for real-time and sequence-based motion, SD card automation for pre-programmed task execution, and physical push buttons for manual joint control.
-      </div>
-      <div class="project-stack">
-        <span class="stack-pill">C++</span>
-        <span class="stack-pill">Arduino</span>
-        <span class="stack-pill">SolidWorks</span>
-        <span class="stack-pill">3D Printing</span>
-        <span class="stack-pill">Bluetooth</span>
-        <span class="stack-pill">MIT App Inventor</span>
-        <span class="stack-pill">SD Card I/O</span>
-        <span class="stack-pill">Servo Control</span>
-      </div>
-      <div class="project-highlight">
-        <strong>Highlight —</strong> Full concept-to-commissioning: mechanical design, firmware, and multi-mode human-machine interface — QMUL, MSc Advanced Robotics
-      </div>
+      <div class="project-desc">Fully functional 5-DOF robotic manipulator using MG996R and SG90 servo motors. All structural components designed in SolidWorks and 3D-printed in PLA. Three independent control modes: Bluetooth Android app (MIT App Inventor) for real-time and sequence-based motion, SD card automation for pre-programmed task execution, and physical push buttons for manual joint control.</div>
+      <div class="project-stack"><span class="stack-pill">C++</span><span class="stack-pill">Arduino</span><span class="stack-pill">SolidWorks</span><span class="stack-pill">3D Printing</span><span class="stack-pill">Bluetooth</span><span class="stack-pill">MIT App Inventor</span><span class="stack-pill">SD Card I/O</span></div>
+      <div class="project-highlight"><strong>Highlight:</strong> Full concept-to-commissioning covering mechanical design, firmware, and multi-mode HMI. QMUL, MSc Advanced Robotics.</div>
     </div>
 
-    <!-- ─────────────────────────────────
-         PROJECT 2 — ROS Trajectory Planning
-         TO ADD PHOTO: <img src="ros-trajectory.jpg" alt="ROS Trajectory Planning">
-         Or use an RViz screenshot — filename: ros-trajectory.jpg
-    ───────────────────────────────── -->
+    <!-- PROJECT 2: TO ADD PHOTO <img src="ros-trajectory.jpg" alt="ROS Trajectory"> -->
     <div class="project-card" data-cat="robotics">
-      <div class="project-photo">
-        <div class="placeholder">
-          <svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
-          <span class="placeholder-text">RViz screenshot coming soon</span>
-        </div>
-      </div>
-      <div class="project-meta">
-        <span class="project-cat robotics">Robotics</span>
-        <span class="project-date">Mar – Apr 2023</span>
-      </div>
-      <div class="project-name">Trajectory Planning with ROS &amp; MoveIt — Panda Arm</div>
-      <div class="project-desc">
-        Developed ROS packages to automate point-to-point cubic trajectory generation and Cartesian path planning for the Franka Panda robot arm using MoveIt. Real-time joint state visualisation via rqt_plot and RViz. Applicable to industrial cobot integration and autonomous manipulation tasks.
-      </div>
-      <div class="project-stack">
-        <span class="stack-pill">ROS</span>
-        <span class="stack-pill">MoveIt</span>
-        <span class="stack-pill">Python</span>
-        <span class="stack-pill">RViz</span>
-        <span class="stack-pill">Linux</span>
-        <span class="stack-pill">Trajectory Planning</span>
-      </div>
-      <div class="project-highlight">
-        <strong>Highlight —</strong> Cubic trajectory generation + Cartesian path planning with real-time visualisation — QMUL, MSc Advanced Robotics
-      </div>
+      <div class="project-photo"><div class="placeholder"><svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg><span class="placeholder-text">RViz screenshot coming soon</span></div></div>
+      <div class="project-meta"><span class="project-cat robotics">Robotics</span><span class="project-date">Mar – Apr 2023</span></div>
+      <div class="project-name">Trajectory Planning with ROS and MoveIt</div>
+      <div class="project-desc">Developed ROS packages to automate point-to-point cubic trajectory generation and Cartesian path planning for the Franka Panda robot arm using MoveIt. Real-time joint state visualisation via rqt_plot and RViz. Applicable to industrial cobot integration and autonomous manipulation tasks.</div>
+      <div class="project-stack"><span class="stack-pill">ROS</span><span class="stack-pill">MoveIt</span><span class="stack-pill">Python</span><span class="stack-pill">RViz</span><span class="stack-pill">Linux</span><span class="stack-pill">Trajectory Planning</span></div>
+      <div class="project-highlight"><strong>Highlight:</strong> Cubic trajectory generation with Cartesian path planning and real-time visualisation. QMUL, MSc Advanced Robotics.</div>
     </div>
 
-    <!-- ─────────────────────────────────
-         PROJECT 3 — HRI Model
-         TO ADD PHOTO: <img src="hri-model.jpg" alt="HRI Model">
-    ───────────────────────────────── -->
+    <!-- PROJECT 3: TO ADD PHOTO <img src="hri-model.jpg" alt="HRI Model"> -->
     <div class="project-card" data-cat="robotics">
-      <div class="project-photo">
-        <div class="placeholder">
-          <svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          <span class="placeholder-text">Photo coming soon</span>
-        </div>
-      </div>
-      <div class="project-meta">
-        <span class="project-cat robotics">Human-Robot Interaction</span>
-        <span class="project-date">Feb – Mar 2023</span>
-      </div>
+      <div class="project-photo"><div class="placeholder"><svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg><span class="placeholder-text">Photo coming soon</span></div></div>
+      <div class="project-meta"><span class="project-cat robotics">Human-Robot Interaction</span><span class="project-date">Feb – Mar 2023</span></div>
       <div class="project-name">Human-Robot Interaction Model with ROS</div>
-      <div class="project-desc">
-        Developed a Bayesian network-based model in ROS enabling a humanoid robot to recognise human facial expressions, gaze direction, and head orientation, then express 3 corresponding emotional states. Implemented perception-action loop bridging computer vision inputs with robot behaviour outputs.
-      </div>
-      <div class="project-stack">
-        <span class="stack-pill">Python</span>
-        <span class="stack-pill">ROS</span>
-        <span class="stack-pill">Bayesian Networks</span>
-        <span class="stack-pill">Computer Vision</span>
-        <span class="stack-pill">Linux</span>
-      </div>
-      <div class="project-highlight">
-        <strong>Highlight —</strong> Perception-to-action pipeline: vision input → emotional state expression — QMUL, MSc Advanced Robotics
-      </div>
+      <div class="project-desc">Developed a Bayesian network-based model in ROS enabling a humanoid robot to recognise human facial expressions, gaze direction, and head orientation, then express 3 corresponding emotional states. Implemented perception-action loop bridging computer vision inputs with robot behaviour outputs.</div>
+      <div class="project-stack"><span class="stack-pill">Python</span><span class="stack-pill">ROS</span><span class="stack-pill">Bayesian Networks</span><span class="stack-pill">Computer Vision</span><span class="stack-pill">Linux</span></div>
+      <div class="project-highlight"><strong>Highlight:</strong> Perception-to-action pipeline from vision input through to emotional state expression. QMUL, MSc Advanced Robotics.</div>
     </div>
 
-    <!-- ─────────────────────────────────
-         PROJECT 4 — Social Trust Modeling
-         TO ADD PHOTO: <img src="social-trust.jpg" alt="Social Trust Modeling">
-    ───────────────────────────────── -->
+    <!-- PROJECT 4: TO ADD PHOTO <img src="social-trust.jpg" alt="Social Trust"> -->
     <div class="project-card" data-cat="robotics">
-      <div class="project-photo">
-        <div class="placeholder">
-          <svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-          <span class="placeholder-text">Simulation screenshot coming soon</span>
-        </div>
-      </div>
-      <div class="project-meta">
-        <span class="project-cat robotics">Cognitive Robotics</span>
-        <span class="project-date">Mar 2023</span>
-      </div>
+      <div class="project-photo"><div class="placeholder"><svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg><span class="placeholder-text">Simulation screenshot coming soon</span></div></div>
+      <div class="project-meta"><span class="project-cat robotics">Cognitive Robotics</span><span class="project-date">Mar 2023</span></div>
       <div class="project-name">Social Trust Modeling in Human-Robot Interaction</div>
-      <div class="project-desc">
-        Simulated a child psychology experiment in ROS using Bayesian networks to model how social trust influences delayed gratification decisions. Developed ROS nodes for mood prediction, preference checking, and gratification delay — replicating known human behavioural patterns through robotic reasoning.
-      </div>
-      <div class="project-stack">
-        <span class="stack-pill">ROS</span>
-        <span class="stack-pill">Python</span>
-        <span class="stack-pill">Bayesian Networks</span>
-        <span class="stack-pill">Cognitive Modeling</span>
-      </div>
-      <div class="project-highlight">
-        <strong>Highlight —</strong> Robotic simulation of human behavioural psychology — QMUL, MSc Advanced Robotics
-      </div>
+      <div class="project-desc">Simulated a child psychology experiment in ROS using Bayesian networks to model how social trust influences delayed gratification decisions. Developed ROS nodes for mood prediction, preference checking, and gratification delay, replicating known human behavioural patterns through robotic reasoning.</div>
+      <div class="project-stack"><span class="stack-pill">ROS</span><span class="stack-pill">Python</span><span class="stack-pill">Bayesian Networks</span><span class="stack-pill">Cognitive Modeling</span></div>
+      <div class="project-highlight"><strong>Highlight:</strong> Robotic simulation of human behavioural psychology using structured reasoning nodes. QMUL, MSc Advanced Robotics.</div>
     </div>
 
-    <!-- ─────────────────────────────────
-         PROJECT 5 — Two-Link Manipulator
-         TO ADD PHOTO: <img src="two-link-sim.jpg" alt="Two-Link Simulation">
-    ───────────────────────────────── -->
+    <!-- PROJECT 5: TO ADD PHOTO <img src="two-link-sim.jpg" alt="Two-Link Sim"> -->
     <div class="project-card" data-cat="robotics">
-      <div class="project-photo">
-        <div class="placeholder">
-          <svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-          <span class="placeholder-text">Simulink screenshot coming soon</span>
-        </div>
-      </div>
-      <div class="project-meta">
-        <span class="project-cat robotics">Control Systems</span>
-        <span class="project-date">Nov – Dec 2022</span>
-      </div>
+      <div class="project-photo"><div class="placeholder"><svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg><span class="placeholder-text">Simulink screenshot coming soon</span></div></div>
+      <div class="project-meta"><span class="project-cat robotics">Control Systems</span><span class="project-date">Nov – Dec 2022</span></div>
       <div class="project-name">Two-Link Planar Manipulator Simulation</div>
-      <div class="project-desc">
-        Simulated a two-link robotic arm in MATLAB/Simulink using computed torque control for accurate joint motion under gravity and inertia effects. Modelled full system dynamics using Lagrangian equations and implemented a real-time closed-loop control system.
-      </div>
-      <div class="project-stack">
-        <span class="stack-pill">MATLAB</span>
-        <span class="stack-pill">Simulink</span>
-        <span class="stack-pill">Torque Control</span>
-        <span class="stack-pill">Dynamic Modeling</span>
-        <span class="stack-pill">Lagrangian Mechanics</span>
-      </div>
-      <div class="project-highlight">
-        <strong>Highlight —</strong> Lagrangian dynamics + real-time computed torque control loop — QMUL, MSc Advanced Robotics
-      </div>
+      <div class="project-desc">Simulated a two-link robotic arm in MATLAB/Simulink using computed torque control for accurate joint motion under gravity and inertia effects. Modelled full system dynamics using Lagrangian equations and implemented a real-time closed-loop control system.</div>
+      <div class="project-stack"><span class="stack-pill">MATLAB</span><span class="stack-pill">Simulink</span><span class="stack-pill">Torque Control</span><span class="stack-pill">Dynamic Modeling</span><span class="stack-pill">Lagrangian Mechanics</span></div>
+      <div class="project-highlight"><strong>Highlight:</strong> Lagrangian dynamics modelling with real-time computed torque control. QMUL, MSc Advanced Robotics.</div>
     </div>
 
-    <!-- ─────────────────────────────────
-         PROJECT 6 — Wind Turbine PID
-         TO ADD PHOTO: <img src="wind-turbine.jpg" alt="Wind Turbine Control">
-    ───────────────────────────────── -->
+    <!-- PROJECT 6: TO ADD PHOTO <img src="wind-turbine.jpg" alt="Wind Turbine"> -->
     <div class="project-card" data-cat="robotics">
-      <div class="project-photo">
-        <div class="placeholder">
-          <svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="3"/></svg>
-          <span class="placeholder-text">Simulink screenshot coming soon</span>
-        </div>
-      </div>
-      <div class="project-meta">
-        <span class="project-cat robotics">Control Systems</span>
-        <span class="project-date">Oct – Nov 2022</span>
-      </div>
+      <div class="project-photo"><div class="placeholder"><svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="3"/></svg><span class="placeholder-text">Simulink screenshot coming soon</span></div></div>
+      <div class="project-meta"><span class="project-cat robotics">Control Systems</span><span class="project-date">Oct – Nov 2022</span></div>
       <div class="project-name">Wind Turbine Yaw Control System</div>
-      <div class="project-desc">
-        Simulated a gyroscope-based yaw control system for a wind turbine in MATLAB/Simulink, integrating PID control, PWM signal generation, H-bridge motor driver, and DC motor model. Modelled sensor noise, bias compensation, and real-time actuation loop for enhanced reliability. Control methodology directly applicable to industrial PLC-based process control.
-      </div>
-      <div class="project-stack">
-        <span class="stack-pill">MATLAB</span>
-        <span class="stack-pill">Simulink</span>
-        <span class="stack-pill">PID Control</span>
-        <span class="stack-pill">PWM</span>
-        <span class="stack-pill">H-Bridge</span>
-        <span class="stack-pill">Noise Filtering</span>
-      </div>
-      <div class="project-highlight">
-        <strong>Highlight —</strong> PID + sensor noise compensation + real-time actuation — QMUL, MSc Advanced Robotics
-      </div>
+      <div class="project-desc">Simulated a gyroscope-based yaw control system for a wind turbine in MATLAB/Simulink, integrating PID control, PWM signal generation, H-bridge motor driver, and DC motor model. Modelled sensor noise, bias compensation, and real-time actuation loop for enhanced reliability. Control methodology directly applicable to industrial PLC-based process control.</div>
+      <div class="project-stack"><span class="stack-pill">MATLAB</span><span class="stack-pill">Simulink</span><span class="stack-pill">PID Control</span><span class="stack-pill">PWM</span><span class="stack-pill">H-Bridge</span><span class="stack-pill">Noise Filtering</span></div>
+      <div class="project-highlight"><strong>Highlight:</strong> PID control with sensor noise compensation and real-time actuation loop. QMUL, MSc Advanced Robotics.</div>
     </div>
 
-    <!-- ─────────────────────────────────
-         PROJECT 7 — AI Route Planner
-         TO ADD PHOTO: <img src="route-planner.jpg" alt="AI Route Planner">
-    ───────────────────────────────── -->
+    <!-- PROJECT 7: TO ADD PHOTO <img src="route-planner.jpg" alt="Route Planner"> -->
     <div class="project-card" data-cat="robotics">
-      <div class="project-photo">
-        <div class="placeholder">
-          <svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="M6 9v6a6 6 0 0 0 6 6h1M18 15V9a6 6 0 0 0-6-6h-1"/></svg>
-          <span class="placeholder-text">Screenshot coming soon</span>
-        </div>
-      </div>
-      <div class="project-meta">
-        <span class="project-cat robotics">AI &amp; Algorithms</span>
-        <span class="project-date">Nov 2022</span>
-      </div>
-      <div class="project-name">AI Route Planner &amp; Genetic Algorithm</div>
-      <div class="project-desc">
-        Graph-based route planner using DFS, BFS, and UCS on London Underground data with zone-aware heuristics and line-switch penalties. UCS reduced node visits from 231 (DFS) to just 5 — a 97.8% reduction. Also implemented a Genetic Algorithm that cracked a 10-character secret string in approximately 100 generations through tuned mutation rate and population size optimisation.
-      </div>
-      <div class="project-stack">
-        <span class="stack-pill">Python</span>
-        <span class="stack-pill">Graph Search</span>
-        <span class="stack-pill">UCS</span>
-        <span class="stack-pill">Genetic Algorithm</span>
-        <span class="stack-pill">Heuristics</span>
-        <span class="stack-pill">Pandas</span>
-      </div>
-      <div class="project-highlight">
-        <strong>Result —</strong> UCS: 231 node visits (DFS) reduced to 5 — 97.8% efficiency gain — QMUL, MSc Advanced Robotics
-      </div>
+      <div class="project-photo"><div class="placeholder"><svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="M6 9v6a6 6 0 0 0 6 6h1M18 15V9a6 6 0 0 0-6-6h-1"/></svg><span class="placeholder-text">Screenshot coming soon</span></div></div>
+      <div class="project-meta"><span class="project-cat robotics">AI and Algorithms</span><span class="project-date">Nov 2022</span></div>
+      <div class="project-name">AI Route Planner and Genetic Algorithm</div>
+      <div class="project-desc">Graph-based route planner using DFS, BFS, and UCS on London Underground data with zone-aware heuristics and line-switch penalties. UCS reduced node visits from 231 (DFS) to just 5, a 97.8% reduction. Also implemented a Genetic Algorithm that cracked a 10-character secret string in approximately 100 generations through tuned mutation rate and population size optimisation.</div>
+      <div class="project-stack"><span class="stack-pill">Python</span><span class="stack-pill">Graph Search</span><span class="stack-pill">UCS</span><span class="stack-pill">Genetic Algorithm</span><span class="stack-pill">Heuristics</span><span class="stack-pill">Pandas</span></div>
+      <div class="project-highlight"><strong>Result:</strong> UCS cut node visits from 231 to 5, a 97.8% efficiency gain. QMUL, MSc Advanced Robotics.</div>
     </div>
 
-    <!-- ─────────────────────────────────
-         PROJECT 8 — AI Access Control
-         TO ADD PHOTO: <img src="access-control.jpg" alt="AI Access Control">
-         Recommended filename: access-control.jpg
-    ───────────────────────────────── -->
+    <!-- PROJECT 8: TO ADD PHOTO <img src="access-control.jpg" alt="Access Control"> -->
     <div class="project-card" data-cat="embedded">
-      <div class="project-photo">
-        <div class="placeholder">
-          <svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          <span class="placeholder-text">Photo coming soon</span>
-        </div>
-      </div>
-      <div class="project-meta">
-        <span class="project-cat embedded">Embedded AI</span>
-        <span class="project-date">Apr – Jul 2020</span>
-      </div>
+      <div class="project-photo"><div class="placeholder"><svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span class="placeholder-text">Photo coming soon</span></div></div>
+      <div class="project-meta"><span class="project-cat embedded">Embedded AI</span><span class="project-date">Apr – Jul 2020</span></div>
       <div class="project-name">AI-Enabled Access Control System</div>
-      <div class="project-desc">
-        IoT-based access control for real-time face mask detection and non-contact temperature screening during COVID-19. Integrated MLX90614 IR sensor with Pi Camera V2 on Raspberry Pi 4. CNN-based MobileNet deep learning model trained on 2,000+ labeled images achieving 98.9% detection accuracy. Real-time Tkinter GUI with solenoid lock, buzzer, and LED outputs. Offline edge computing capability with SQLite local logging.
-      </div>
-      <div class="project-stack">
-        <span class="stack-pill">TensorFlow</span>
-        <span class="stack-pill">Keras</span>
-        <span class="stack-pill">OpenCV</span>
-        <span class="stack-pill">MobileNet CNN</span>
-        <span class="stack-pill">Raspberry Pi 4</span>
-        <span class="stack-pill">Python</span>
-        <span class="stack-pill">SQLite</span>
-        <span class="stack-pill">Tkinter</span>
-      </div>
-      <div class="project-highlight">
-        <strong>Result —</strong> 98.9% accuracy on 2,000+ image dataset, deployed as standalone edge system — Defence Engineering Organisation
-      </div>
+      <div class="project-desc">IoT-based access control for real-time face mask detection and non-contact temperature screening during COVID-19. Integrated MLX90614 IR sensor with Pi Camera V2 on Raspberry Pi 4. CNN-based MobileNet deep learning model trained on 2,000+ labelled images achieving 98.9% detection accuracy. Real-time Tkinter GUI with solenoid lock, buzzer, and LED outputs. Offline edge computing capability with SQLite local logging.</div>
+      <div class="project-stack"><span class="stack-pill">TensorFlow</span><span class="stack-pill">Keras</span><span class="stack-pill">OpenCV</span><span class="stack-pill">MobileNet CNN</span><span class="stack-pill">Raspberry Pi 4</span><span class="stack-pill">Python</span><span class="stack-pill">SQLite</span></div>
+      <div class="project-highlight"><strong>Result:</strong> 98.9% accuracy on 2,000+ image dataset, deployed as standalone edge system. Defence Engineering Organisation.</div>
     </div>
 
-    <!-- ─────────────────────────────────
-         PROJECT 9 — Emergency Ventilator
-         TO ADD PHOTO: <img src="ventilator.jpg" alt="Emergency Ventilator">
-    ───────────────────────────────── -->
+    <!-- PROJECT 9: TO ADD PHOTO <img src="ventilator.jpg" alt="Emergency Ventilator"> -->
     <div class="project-card" data-cat="embedded">
-      <div class="project-photo">
-        <div class="placeholder">
-          <svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-          <span class="placeholder-text">Photo coming soon</span>
-        </div>
-      </div>
-      <div class="project-meta">
-        <span class="project-cat embedded">Medical Mechatronics</span>
-        <span class="project-date">Jun – Jul 2020</span>
-      </div>
+      <div class="project-photo"><div class="placeholder"><svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg><span class="placeholder-text">Photo coming soon</span></div></div>
+      <div class="project-meta"><span class="project-cat embedded">Medical Mechatronics</span><span class="project-date">Jun – Jul 2020</span></div>
       <div class="project-name">Emergency Ventilator — COVID-19 Rapid Prototype</div>
-      <div class="project-desc">
-        Low-cost emergency ventilator based on the Apollo BVM design, engineered under COVID-19 resource constraints. Python-based motor control automates Ambu bag compression. Integrated flow sensor for real-time air delivery monitoring. Touchscreen HMI for setting BPM, tidal volume, and pressure curves with user-adjustable inhalation/exhalation cycles and safety limits.
-      </div>
-      <div class="project-stack">
-        <span class="stack-pill">Python</span>
-        <span class="stack-pill">Motor Control</span>
-        <span class="stack-pill">Flow Sensors</span>
-        <span class="stack-pill">Touchscreen HMI</span>
-        <span class="stack-pill">Embedded Systems</span>
-        <span class="stack-pill">Rapid Prototyping</span>
-      </div>
-      <div class="project-highlight">
-        <strong>Context —</strong> Rapid R&D under operational constraints — medical mechatronics for crisis response — Defence Engineering Organisation
-      </div>
+      <div class="project-desc">Low-cost emergency ventilator based on the Apollo BVM design, engineered under COVID-19 resource constraints. Python-based motor control automates Ambu bag compression. Integrated flow sensor for real-time air delivery monitoring. Touchscreen HMI for setting BPM, tidal volume, and pressure curves with user-adjustable inhalation/exhalation cycles and safety limits.</div>
+      <div class="project-stack"><span class="stack-pill">Python</span><span class="stack-pill">Motor Control</span><span class="stack-pill">Flow Sensors</span><span class="stack-pill">Touchscreen HMI</span><span class="stack-pill">Embedded Systems</span><span class="stack-pill">Rapid Prototyping</span></div>
+      <div class="project-highlight"><strong>Context:</strong> Rapid R&D under operational constraints, medical mechatronics for crisis response. Defence Engineering Organisation.</div>
     </div>
 
-    <!-- ─────────────────────────────────
-         PROJECT 10 — Vehicle Fleet Management
-         TO ADD PHOTO: <img src="fleet-management.jpg" alt="Fleet Management System">
-    ───────────────────────────────── -->
+    <!-- PROJECT 10: TO ADD PHOTO <img src="fleet-management.jpg" alt="Fleet Management"> -->
     <div class="project-card" data-cat="embedded">
-      <div class="project-photo">
-        <div class="placeholder">
-          <svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7V8zM1 16h20M7 19a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM17 19a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/></svg>
-          <span class="placeholder-text">Screenshot coming soon</span>
-        </div>
-      </div>
-      <div class="project-meta">
-        <span class="project-cat embedded">IoT &amp; Systems</span>
-        <span class="project-date">Mar – Jun 2020</span>
-      </div>
-      <div class="project-name">Vehicle Fleet Management &amp; Predictive Maintenance</div>
-      <div class="project-desc">
-        IoT-based fleet tracking system for a 350+ vehicle military fleet, improving operational efficiency by 20%. Integrated driver logging, speed and behaviour monitoring, and real-time diagnostics. Implemented CMMS-based predictive and periodic maintenance scheduling using vehicle telemetry data, significantly reducing unplanned downtime.
-      </div>
-      <div class="project-stack">
-        <span class="stack-pill">IoT</span>
-        <span class="stack-pill">CMMS</span>
-        <span class="stack-pill">Fleet Telematics</span>
-        <span class="stack-pill">Predictive Maintenance</span>
-        <span class="stack-pill">Embedded Systems</span>
-      </div>
-      <div class="project-highlight">
-        <strong>Result —</strong> 20% operational efficiency improvement across 350+ vehicle fleet — Defence Engineering Organisation
-      </div>
+      <div class="project-photo"><div class="placeholder"><svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7V8zM1 16h20M7 19a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM17 19a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/></svg><span class="placeholder-text">Screenshot coming soon</span></div></div>
+      <div class="project-meta"><span class="project-cat embedded">IoT and Systems</span><span class="project-date">Mar – Jun 2020</span></div>
+      <div class="project-name">Vehicle Fleet Management and Predictive Maintenance</div>
+      <div class="project-desc">IoT-based fleet tracking system for a 350+ vehicle military fleet, improving operational efficiency by 20%. Integrated driver logging, speed and behaviour monitoring, and real-time diagnostics. Implemented CMMS-based predictive and periodic maintenance scheduling using vehicle telemetry data, significantly reducing unplanned downtime.</div>
+      <div class="project-stack"><span class="stack-pill">IoT</span><span class="stack-pill">CMMS</span><span class="stack-pill">Fleet Telematics</span><span class="stack-pill">Predictive Maintenance</span><span class="stack-pill">Embedded Systems</span></div>
+      <div class="project-highlight"><strong>Result:</strong> 20% operational efficiency improvement across a 350+ vehicle fleet. Defence Engineering Organisation.</div>
     </div>
 
-    <!-- ─────────────────────────────────
-         PROJECT 11 — Drone
-         TO ADD PHOTO: <img src="drone.jpg" alt="Autonomous Drone">
-         Recommended filename: drone.jpg
-    ───────────────────────────────── -->
+    <!-- PROJECT 11: TO ADD PHOTO <img src="drone.jpg" alt="Autonomous Drone"> -->
     <div class="project-card" data-cat="embedded">
-      <div class="project-photo">
-        <div class="placeholder">
-          <svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2"><path d="M12 2l3 6h6l-5 4 2 7-6-4-6 4 2-7-5-4h6z"/></svg>
-          <span class="placeholder-text">Photo coming soon</span>
-        </div>
-      </div>
-      <div class="project-meta">
-        <span class="project-cat embedded">UAV Systems</span>
-        <span class="project-date">Jun 2016 – Sep 2017</span>
-      </div>
+      <div class="project-photo"><div class="placeholder"><svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2"><path d="M12 2l3 6h6l-5 4 2 7-6-4-6 4 2-7-5-4h6z"/></svg><span class="placeholder-text">Photo coming soon</span></div></div>
+      <div class="project-meta"><span class="project-cat embedded">UAV Systems</span><span class="project-date">Jun 2016 – Sep 2017</span></div>
       <div class="project-name">Autonomous Animal-Tracking Drone</div>
-      <div class="project-desc">
-        Built a fully autonomous quadcopter from scratch for real-time animal tracking. Hardware: APM 2.6 flight controller, Arduino Nano, IMU MPU-6000, brushless DC motors, ESCs, and 4S LiPo battery. Android app (OpenCV) for real-time image processing using HSV filtering, Gaussian blur, and binary segmentation. Affine transformation calculates object displacement in x-y plane. Bluetooth relay transmits movement commands to Arduino generating PWM for pitch and roll control. PID and LQR controllers for flight stabilisation. 23-minute endurance after weight-to-thrust optimisation.
-      </div>
-      <div class="project-stack">
-        <span class="stack-pill">Arduino</span>
-        <span class="stack-pill">APM 2.6</span>
-        <span class="stack-pill">OpenCV</span>
-        <span class="stack-pill">PID Control</span>
-        <span class="stack-pill">LQR Control</span>
-        <span class="stack-pill">Android</span>
-        <span class="stack-pill">IMU</span>
-        <span class="stack-pill">PWM</span>
-        <span class="stack-pill">MATLAB</span>
-      </div>
-      <div class="project-highlight">
-        <strong>Result —</strong> 23-minute flight endurance, autonomous + manual mode switching — NUST BEng Final Year Project
-      </div>
+      <div class="project-desc">Built a fully autonomous quadcopter from scratch for real-time animal tracking. Hardware: APM 2.6 flight controller, Arduino Nano, IMU MPU-6000, brushless DC motors, ESCs, and 4S LiPo battery. Android app (OpenCV) for real-time image processing using HSV filtering, Gaussian blur, and binary segmentation. Affine transformation calculates object displacement in x-y plane. PID and LQR controllers for flight stabilisation. 23-minute endurance after weight-to-thrust optimisation.</div>
+      <div class="project-stack"><span class="stack-pill">Arduino</span><span class="stack-pill">APM 2.6</span><span class="stack-pill">OpenCV</span><span class="stack-pill">PID Control</span><span class="stack-pill">LQR Control</span><span class="stack-pill">Android</span><span class="stack-pill">IMU</span><span class="stack-pill">MATLAB</span></div>
+      <div class="project-highlight"><strong>Result:</strong> 23-minute flight endurance with autonomous and manual mode switching. NUST BEng Final Year Project.</div>
     </div>
 
-    <!-- ─────────────────────────────────
-         PROJECT 12 — Weapon System Automation
-         TO ADD PHOTO: <img src="weapon-automation.jpg" alt="Weapon System Automation">
-         Note: use a general/safe photo — system diagram, test bench, or team photo
-    ───────────────────────────────── -->
+    <!-- PROJECT 12: TO ADD PHOTO <img src="weapon-automation.jpg" alt="Weapon Automation"> -->
     <div class="project-card" data-cat="systems">
-      <div class="project-photo">
-        <div class="placeholder">
-          <svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
-          <span class="placeholder-text">Photo coming soon</span>
-        </div>
-      </div>
-      <div class="project-meta">
-        <span class="project-cat systems">Defence Automation</span>
-        <span class="project-date">Jan – Oct 2019</span>
-      </div>
+      <div class="project-photo"><div class="placeholder"><svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg><span class="placeholder-text">Photo coming soon</span></div></div>
+      <div class="project-meta"><span class="project-cat systems">Defence Automation</span><span class="project-date">Jan – Oct 2019</span></div>
       <div class="project-name">Weapon System Automation — Armoured Vehicles</div>
-      <div class="project-desc">
-        Designed and deployed automation solutions for weapon systems on armoured vehicles, improving targeting accuracy and operator safety by 25%. Integrated mechatronic control systems, actuators, and embedded software for stabilised aiming and remote operation. Collaborated with cross-functional teams for system integration, field testing, and validation under combat-simulated conditions. Safety-critical systems engineering with real-time performance requirements.
-      </div>
-      <div class="project-stack">
-        <span class="stack-pill">Mechatronics</span>
-        <span class="stack-pill">Embedded Systems</span>
-        <span class="stack-pill">Actuator Control</span>
-        <span class="stack-pill">Safety Engineering</span>
-        <span class="stack-pill">System Integration</span>
-        <span class="stack-pill">Field Testing</span>
-      </div>
-      <div class="project-highlight">
-        <strong>Result —</strong> 25% improvement in targeting accuracy and operator safety — Defence Engineering Organisation
-      </div>
+      <div class="project-desc">Designed and deployed automation solutions for weapon systems on armoured vehicles, improving targeting accuracy and operator safety by 25%. Integrated mechatronic control systems, actuators, and embedded software for stabilised aiming and remote operation. Collaborated with cross-functional teams for system integration, field testing, and validation under combat-simulated conditions.</div>
+      <div class="project-stack"><span class="stack-pill">Mechatronics</span><span class="stack-pill">Embedded Systems</span><span class="stack-pill">Actuator Control</span><span class="stack-pill">Safety Engineering</span><span class="stack-pill">System Integration</span></div>
+      <div class="project-highlight"><strong>Result:</strong> 25% improvement in targeting accuracy and operator safety. Defence Engineering Organisation.</div>
     </div>
 
-    <!-- ─────────────────────────────────
-         PROJECT 13 — Armoured Vehicle Repair Facility
-         TO ADD PHOTO: <img src="repair-facility.jpg" alt="Repair Facility">
-         Recommended filename: repair-facility.jpg
-    ───────────────────────────────── -->
+    <!-- PROJECT 13: TO ADD PHOTO <img src="repair-facility.jpg" alt="Repair Facility"> -->
     <div class="project-card" data-cat="systems">
-      <div class="project-photo">
-        <div class="placeholder">
-          <svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-          <span class="placeholder-text">Photo coming soon</span>
-        </div>
-      </div>
-      <div class="project-meta">
-        <span class="project-cat systems">Facility Engineering</span>
-        <span class="project-date">Nov 2020 – Aug 2021</span>
-      </div>
+      <div class="project-photo"><div class="placeholder"><svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span class="placeholder-text">Photo coming soon</span></div></div>
+      <div class="project-meta"><span class="project-cat systems">Facility Engineering</span><span class="project-date">Nov 2020 – Aug 2021</span></div>
       <div class="project-name">Military Armoured Vehicle Repair Facility</div>
-      <div class="project-desc">
-        Led full design, planning, and construction of a military-grade repair facility for armoured vehicles — reducing maintenance downtime by 25%. Calculated compressed air system requirements including compressor sizing and pneumatic tool support. Integrated overhead crane, winches, and custom test benches for heavy-duty service operations. Managed £250K+ procurement across 12 suppliers, achieving 11% cost savings through negotiation and process auditing. Delivered engineering briefings to senior command throughout the project lifecycle.
-      </div>
-      <div class="project-stack">
-        <span class="stack-pill">AutoCAD</span>
-        <span class="stack-pill">SketchUp</span>
-        <span class="stack-pill">MS Project</span>
-        <span class="stack-pill">Pneumatics</span>
-        <span class="stack-pill">Overhead Lifting</span>
-        <span class="stack-pill">Procurement</span>
-        <span class="stack-pill">Facility Design</span>
-      </div>
-      <div class="project-highlight">
-        <strong>Result —</strong> 25% downtime reduction, £250K+ procurement with 11% savings — Defence Engineering Organisation
-      </div>
+      <div class="project-desc">Led full design, planning, and construction of a military-grade repair facility for armoured vehicles, reducing maintenance downtime by 25%. Calculated compressed air system requirements including compressor sizing and pneumatic tool support. Integrated overhead crane, winches, and custom test benches for heavy-duty service operations. Managed £250K+ procurement across 12 suppliers, achieving 11% cost savings through negotiation and process auditing.</div>
+      <div class="project-stack"><span class="stack-pill">AutoCAD</span><span class="stack-pill">SketchUp</span><span class="stack-pill">MS Project</span><span class="stack-pill">Pneumatics</span><span class="stack-pill">Overhead Lifting</span><span class="stack-pill">Procurement</span></div>
+      <div class="project-highlight"><strong>Result:</strong> 25% downtime reduction and £250K+ procurement with 11% cost savings. Defence Engineering Organisation.</div>
     </div>
 
   </div>
@@ -1081,100 +352,199 @@
 
 <div class="divider"></div>
 
-<!-- ═══════════════════════════════════════
-     SKILLS
-════════════════════════════════════════ -->
 <section id="skills">
   <div class="section-eye">Technical capabilities</div>
-  <h2>Skills &amp; stack</h2>
-
+  <h2>Skills and stack</h2>
   <div class="skills-grid">
     <div class="skill-group">
-      <div class="skill-group-title">PLC &amp; Industrial Automation</div>
-      <div class="skill-list">
-        <span class="skill-chip">Siemens TIA Portal</span>
-        <span class="skill-chip">S7-1200 / S7-1500</span>
-        <span class="skill-chip">WinCC</span>
-        <span class="skill-chip">SCADA</span>
-        <span class="skill-chip">HMI Design</span>
-        <span class="skill-chip">PROFINET</span>
-        <span class="skill-chip">PROFIBUS</span>
-        <span class="skill-chip">MODBUS TCP/IP</span>
-        <span class="skill-chip">OPC UA</span>
-        <span class="skill-chip">IEC 61131-3</span>
-        <span class="skill-chip">Process Control</span>
-        <span class="skill-chip">IIoT</span>
-      </div>
+      <div class="skill-group-title">PLC and Industrial Automation</div>
+      <div class="skill-list"><span class="skill-chip">Siemens TIA Portal</span><span class="skill-chip">S7-1200 / S7-1500</span><span class="skill-chip">WinCC</span><span class="skill-chip">SCADA</span><span class="skill-chip">HMI Design</span><span class="skill-chip">PROFINET</span><span class="skill-chip">PROFIBUS</span><span class="skill-chip">MODBUS TCP/IP</span><span class="skill-chip">OPC UA</span><span class="skill-chip">IEC 61131-3</span><span class="skill-chip">Process Control</span><span class="skill-chip">IIoT</span></div>
     </div>
     <div class="skill-group">
-      <div class="skill-group-title">Robotics &amp; Motion</div>
-      <div class="skill-list">
-        <span class="skill-chip">ROS / ROS2</span>
-        <span class="skill-chip">MoveIt</span>
-        <span class="skill-chip">Motion Planning</span>
-        <span class="skill-chip">Trajectory Planning</span>
-        <span class="skill-chip">Robot Kinematics</span>
-        <span class="skill-chip">ABB Industrial Robots</span>
-        <span class="skill-chip">UAV Systems</span>
-        <span class="skill-chip">Autonomous Systems</span>
-        <span class="skill-chip">PID Control</span>
-        <span class="skill-chip">LQR Control</span>
-      </div>
+      <div class="skill-group-title">Robotics and Motion</div>
+      <div class="skill-list"><span class="skill-chip">ROS / ROS2</span><span class="skill-chip">MoveIt</span><span class="skill-chip">Motion Planning</span><span class="skill-chip">Trajectory Planning</span><span class="skill-chip">Robot Kinematics</span><span class="skill-chip">ABB Industrial Robots</span><span class="skill-chip">UAV Systems</span><span class="skill-chip">Autonomous Systems</span><span class="skill-chip">PID Control</span><span class="skill-chip">LQR Control</span></div>
     </div>
     <div class="skill-group">
-      <div class="skill-group-title">Embedded &amp; Hardware</div>
-      <div class="skill-list">
-        <span class="skill-chip">C / C++</span>
-        <span class="skill-chip">Embedded C</span>
-        <span class="skill-chip">Arduino</span>
-        <span class="skill-chip">Raspberry Pi</span>
-        <span class="skill-chip">RTOS</span>
-        <span class="skill-chip">IMU Sensor Fusion</span>
-        <span class="skill-chip">PWM Control</span>
-        <span class="skill-chip">PCB Design</span>
-        <span class="skill-chip">3D Printing</span>
-        <span class="skill-chip">SolidWorks</span>
-      </div>
+      <div class="skill-group-title">Embedded and Hardware</div>
+      <div class="skill-list"><span class="skill-chip">C / C++</span><span class="skill-chip">Embedded C</span><span class="skill-chip">Arduino</span><span class="skill-chip">Raspberry Pi</span><span class="skill-chip">RTOS</span><span class="skill-chip">IMU Sensor Fusion</span><span class="skill-chip">PWM Control</span><span class="skill-chip">PCB Design</span><span class="skill-chip">3D Printing</span><span class="skill-chip">SolidWorks</span></div>
     </div>
     <div class="skill-group">
-      <div class="skill-group-title">AI, Vision &amp; Simulation</div>
-      <div class="skill-list">
-        <span class="skill-chip">Python</span>
-        <span class="skill-chip">TensorFlow / Keras</span>
-        <span class="skill-chip">OpenCV</span>
-        <span class="skill-chip">MobileNet CNN</span>
-        <span class="skill-chip">Computer Vision</span>
-        <span class="skill-chip">MATLAB</span>
-        <span class="skill-chip">Simulink</span>
-        <span class="skill-chip">Bayesian Networks</span>
-        <span class="skill-chip">Genetic Algorithms</span>
-      </div>
+      <div class="skill-group-title">AI, Vision and Simulation</div>
+      <div class="skill-list"><span class="skill-chip">Python</span><span class="skill-chip">TensorFlow / Keras</span><span class="skill-chip">OpenCV</span><span class="skill-chip">MobileNet CNN</span><span class="skill-chip">Computer Vision</span><span class="skill-chip">MATLAB</span><span class="skill-chip">Simulink</span><span class="skill-chip">Bayesian Networks</span><span class="skill-chip">Genetic Algorithms</span></div>
     </div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- ═══════════════════════════════════════
-     ABOUT
-════════════════════════════════════════ -->
+<section id="experience">
+  <div class="section-eye">Career history</div>
+  <h2>Experience</h2>
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-period">Jul 2025 – Jan 2026 · 7 months</div>
+      <div class="timeline-role">Robotics Trainer</div>
+      <div class="timeline-company">SIRM: Learners Today, Leaders Tomorrow</div>
+      <div class="timeline-location">Greater London, England, United Kingdom</div>
+      <ul class="timeline-points">
+        <li>Designed and delivered structured robotics training programmes covering embedded systems (Arduino, Raspberry Pi), programming, control theory and autonomous systems</li>
+        <li>Conducted 20+ hands-on robotic workshops for STEM awareness</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-period">Apr 2025 – Nov 2025 · 8 months</div>
+      <div class="timeline-role">Technical Project Lead</div>
+      <div class="timeline-company">Loyd International</div>
+      <ul class="timeline-points">
+        <li>Architected and commissioned Siemens TIA Portal-based PLC control systems for conveyor and intralogistics automation across 3 client sites (projects £50K+), delivered full project lifecycle from requirements through FAT/SAT to client handover</li>
+        <li>Integrated IIoT platform with cloud CRM using MQTT and Azure IoT Hub, delivered real-time operational visibility across client logistics networks reducing manual reporting by 40%</li>
+        <li>Led distributed multidisciplinary team across software, controls and mechanical disciplines using Agile/Scrum and JIRA, maintaining delivery quality on concurrent workstreams</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-period">Jul 2023 – Jan 2025 · 1 year 7 months</div>
+      <div class="timeline-role">Automation and Process Optimisation Lead</div>
+      <div class="timeline-company">Co-op</div>
+      <div class="timeline-location">London, United Kingdom</div>
+      <div class="timeline-note">Initially undertaken part-time alongside MSc Advanced Robotics at Queen Mary University of London (Jul 2023 – Jan 2024), transitioning to full-time from February 2024.</div>
+      <ul class="timeline-points">
+        <li>Implemented automation strategy for inventory and logistics systems across a high-volume retail operation, reducing operational waste 28% and improving process efficiency 15% through systematic workflow automation and continuous improvement</li>
+        <li>Deployed cloud-integrated inventory tracking system enabling real-time stock visibility and predictive restocking across the operation</li>
+        <li>Collaborated across departments to align technical upgrades with business KPIs, optimising team performance and technology ROI</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-period">Nov 2019 – Aug 2021 · 1 year 10 months</div>
+      <div class="timeline-role">Engineering Lead, Automation and Systems</div>
+      <div class="timeline-company">Public Sector Defense Engineering Organization</div>
+      <div class="timeline-location">Pakistan</div>
+      <ul class="timeline-points">
+        <li>Commissioned full armoured vehicle repair facility incorporating overhead lifting, pneumatic tooling and embedded diagnostics, cutting maintenance downtime by 25%</li>
+        <li>Improved system uptime by 35% and reduced equipment failure rates by 20% through root cause analysis and iterative design refinement</li>
+        <li>Led 120-person engineering unit responsible for repair and maintenance of 350+ military electromechanical systems</li>
+        <li>Managed £250K+ procurement across 12 suppliers, achieving 11% cost savings through structured vendor negotiation</li>
+      </ul>
+      <div class="timeline-sub">
+        <div class="timeline-period">Nov 2017 – Nov 2019 · 2 years 1 month</div>
+        <div class="timeline-role">Mechatronics Engineer</div>
+        <div class="timeline-location">Pakistan</div>
+        <ul class="timeline-points">
+          <li>Engineered real-time embedded control and sensor feedback architecture for weapon system automation, improving targeting accuracy by 45%</li>
+          <li>Built IoT-based fleet management platform with CMMS integration, eliminating 70% of unplanned downtime across a 350-vehicle fleet</li>
+          <li>Developed AI-enabled access control system using Raspberry Pi, TensorFlow and OpenCV, achieving 98.9% recognition accuracy and 90% reduction in unauthorised access incidents</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-period">Jun 2016 – Jan 2017 · 8 months</div>
+      <div class="timeline-role">Research Intern</div>
+      <div class="timeline-company">National University of Sciences and Technology (NUST)</div>
+      <div class="timeline-location">Pakistan</div>
+      <ul class="timeline-points">
+        <li>Programmed and integrated ABB industrial robots on multi-robot R&amp;D platforms, developing trajectory planning and motion control algorithms in MATLAB, Simulink and Embedded C</li>
+        <li>Applied iterative prototyping methodology to embedded control development, shortening test cycles and improving system response across multiple robot configurations</li>
+        <li>Gained hands-on experience with industrial robot programming, sensor integration and real-time control in a research environment</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="education">
+  <div class="section-eye">Academic background</div>
+  <h2>Education</h2>
+  <div class="edu-grid">
+
+    <div class="edu-card">
+      <div class="edu-top">
+        <div class="edu-school">Queen Mary University of London</div>
+        <div class="edu-years">2022 – 2024</div>
+      </div>
+      <div class="edu-degree">Master's degree · Advanced Robotics · Merit</div>
+      <div class="edu-body">
+        <div class="edu-label">Research project</div>
+        <p>Designed and programmed a 5-DOF 3D-printed robotic arm with multi-control architecture including Bluetooth app, SD card automation, and manual interface.</p>
+        <div class="edu-label">Courses</div>
+        <p>Robotics · Advanced Robotic Systems · Artificial Intelligence · Electronic Sensing · Digital Signal Acquisition and Processing · Cognitive Robotics</p>
+      </div>
+    </div>
+
+    <div class="edu-card">
+      <div class="edu-top">
+        <div class="edu-school">National University of Sciences and Technology (NUST)</div>
+        <div class="edu-years">2013 – 2017</div>
+      </div>
+      <div class="edu-degree">Bachelor's degree · Mechatronics Engineering · Medal of Excellence</div>
+      <div class="edu-body">
+        <div class="edu-label">Final year project</div>
+        <p>Developed an autonomous drone system for real-time animal tracking using APM 2.6, Arduino Nano, and OpenCV-based Android app for onboard image processing. Integrated PID/LQR controllers for flight stabilisation and enabled Bluetooth-based manual/autonomous switching. Optimised flight time to 23 mins through weight-to-thrust enhancements.</p>
+        <div class="edu-label">Activities</div>
+        <p>National Engineering and Robotics Contest · International Conference on Robotics and Artificial Intelligence · EME Media Club · EME Olympiad</p>
+        <div class="edu-label">Courses</div>
+        <p>Digital Logic Design · Object-Oriented Programming · Data Structures · Network Analysis · Microcontroller Systems · Instrumentation · Industrial Electronics · Circuit Design · Electro-Mechanical Systems · Mechatronics · Project Management</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="certifications">
+  <div class="section-eye">Qualifications</div>
+  <h2>Certifications and awards</h2>
+
+  <div style="margin-bottom:2rem">
+    <div class="cert-grid">
+      <div class="cert-card">
+        <div class="cert-name">Registered Mechatronics Engineer</div>
+        <div class="cert-issuer">Pakistan Engineering Council</div>
+        <div class="cert-meta">Credential ID: MECHATRO/03469</div>
+        <span class="cert-badge done">Certified</span>
+      </div>
+      <div class="cert-card">
+        <div class="cert-name">Siemens TIA Portal V20, Industrial Automation and PLC Specialization</div>
+        <div class="cert-issuer">Packt</div>
+        <span class="cert-badge progress">In progress</span>
+      </div>
+      <div class="cert-card">
+        <div class="cert-name">Six Sigma Foundations</div>
+        <div class="cert-issuer">LinkedIn</div>
+        <div class="cert-meta">Issued Sep 2024</div>
+        <span class="cert-badge done">Certified</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-eye" style="margin-bottom:1rem">Honours and awards</div>
+  <div class="awards-grid">
+    <div class="award-card"><div class="award-name">High Achiever Award</div><div class="award-issuer">Rector, NUST</div></div>
+    <div class="award-card"><div class="award-name">Medal of Excellence</div><div class="award-issuer">Commandant, EME College</div></div>
+    <div class="award-card"><div class="award-name">Senior College Appointment</div><div class="award-issuer">Commandant, EME College</div></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
 <section id="about">
   <div class="section-eye">Background</div>
   <h2>About me</h2>
-
   <div class="about-grid">
     <div class="about-text">
-      <p>
-        I am a <strong>Mechatronics and Automation Engineer</strong> with 7+ years of experience across defence, logistics, and manufacturing. I work across the full engineering stack — from mechanical design and embedded firmware through to PLC programming, SCADA, and live system commissioning.
-      </p>
-      <p>
-        My approach is straightforward: <strong>understand the problem thoroughly before writing a line of code or placing a component</strong>, and see every project through to working deployment. The 13 projects on this site reflect that — each one went from concept to a functioning system.
-      </p>
-      <p>
-        I hold an <strong>MSc in Advanced Robotics</strong> from Queen Mary University of London (Merit) and a <strong>BEng in Mechatronics</strong> from NUST (Medal of Excellence, High Achiever Award). I am currently based in Amsterdam on a Dutch Orientation Year Visa, with Nuffic degree equivalency completed, and actively seeking permanent engineering roles in the Netherlands.
-      </p>
+      <p>I build automated systems that work in the real world, from Siemens PLC panels and WinCC SCADA to ROS2 robotics platforms and custom mechatronic hardware. With 7+ years across defence, logistics and manufacturing, I have taken complex electromechanical and intralogistics systems from concept through to commissioning, and led the engineering teams that deliver them.</p>
+      <p>Some of what I have delivered: a Siemens TIA Portal-based conveyor control system commissioned across 3 client sites (£50K+ projects, full FAT/SAT lifecycle); a cloud-integrated IIoT platform using MQTT and Azure IoT Hub that cut manual client reporting by 40%; an AI-enabled access control system on Raspberry Pi achieving 98.9% recognition accuracy; and a fully autonomous quadcopter with PID/LQR control and 23-minute endurance, built from scratch including hardware, firmware and vision system.</p>
+      <p>Before that, I led a 120-person engineering unit maintaining 350+ electromechanical systems in the defence sector, improving system uptime by 35% and cutting failure rates by 20% through structured root cause analysis and reliability engineering.</p>
+      <p>MSc Advanced Robotics, Queen Mary University of London (Merit). BEng Mechatronics, NUST (Medal of Excellence). Dutch Residence Permit holder. English fluent. Dutch A1 and actively learning.</p>
+      <p>Outside engineering hours I am usually building something or exploring the Netherlands on a bike, which feels like the mandatory Dutch integration programme.</p>
+      <p>Based in Amsterdam, available immediately for Mechatronics Engineer, Robotics Engineer or Control and Automation Engineer roles across the Netherlands, on-site or hybrid.</p>
     </div>
-
     <div>
       <table class="info-table">
         <tr><td>Location</td><td>Amsterdam, Netherlands</td></tr>
@@ -1182,7 +552,7 @@
         <tr><td>Degree equiv.</td><td>Nuffic / IDW verified</td></tr>
         <tr><td>MSc</td><td>Advanced Robotics, QMUL (Merit)</td></tr>
         <tr><td>BEng</td><td>Mechatronics, NUST (Medal of Excellence)</td></tr>
-        <tr><td>Languages</td><td>English (fluent) · Urdu (native) · Dutch (A1)</td></tr>
+        <tr><td>Languages</td><td>English (full professional) · Urdu (native) · Punjabi (native) · Dutch (A1, actively learning)</td></tr>
         <tr><td>Target roles</td><td>Control Engineer · Robotics Engineer · Mechatronics Engineer</td></tr>
         <tr><td>Email</td><td><a href="mailto:muradbininamtarar@gmail.com">muradbininamtarar@gmail.com</a></td></tr>
         <tr><td>LinkedIn</td><td><a href="https://linkedin.com/in/murad-bin-inam-tarar" target="_blank">murad-bin-inam-tarar</a></td></tr>
@@ -1194,61 +564,37 @@
 
 <div class="divider"></div>
 
-<!-- ═══════════════════════════════════════
-     CONTACT
-════════════════════════════════════════ -->
 <section id="contact">
   <div class="section-eye">Get in touch</div>
   <h2>Contact</h2>
-
   <div class="contact-box">
     <div>
-      <div class="contact-heading">Open to Control, Robotics &amp; Mechatronics roles in the Netherlands.</div>
-      <p style="font-size:0.875rem;color:var(--text2);margin-top:0.75rem;max-width:340px;line-height:1.7;">
-        Available for on-site or hybrid positions. Immediately available. Dutch residence permit — no sponsorship required.
-      </p>
+      <div class="contact-heading">Open to Control, Robotics and Mechatronics roles in the Netherlands.</div>
+      <p style="font-size:0.875rem;color:var(--text2);margin-top:0.75rem;max-width:340px;line-height:1.7;">Available for on-site or hybrid positions. Immediately available. Dutch residence permit, no sponsorship required.</p>
     </div>
     <div class="contact-links">
-      <a class="contact-link" href="mailto:muradbininamtarar@gmail.com">
-        <span class="contact-link-label">Email</span>
-        muradbininamtarar@gmail.com
-      </a>
-      <a class="contact-link" href="tel:+31685003800">
-        <span class="contact-link-label">Phone</span>
-        +31 6 850 03800
-      </a>
-      <a class="contact-link" href="https://linkedin.com/in/murad-bin-inam-tarar" target="_blank">
-        <span class="contact-link-label">LinkedIn</span>
-        murad-bin-inam-tarar
-      </a>
-      <a class="contact-link" href="https://github.com/murad-tarar" target="_blank">
-        <span class="contact-link-label">GitHub</span>
-        github.com/murad-tarar
-      </a>
+      <a class="contact-link" href="mailto:muradbininamtarar@gmail.com"><span class="contact-link-label">Email</span>muradbininamtarar@gmail.com</a>
+      <a class="contact-link" href="tel:+31685003800"><span class="contact-link-label">Phone</span>+31 6 850 03800</a>
+      <a class="contact-link" href="https://linkedin.com/in/murad-bin-inam-tarar" target="_blank"><span class="contact-link-label">LinkedIn</span>murad-bin-inam-tarar</a>
+      <a class="contact-link" href="https://github.com/murad-tarar" target="_blank"><span class="contact-link-label">GitHub</span>github.com/murad-tarar</a>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <p>Murad Bin Inam Tarar — Robotics &amp; Automation Engineer</p>
+  <p>Murad Bin Inam Tarar — Robotics and Automation Engineer</p>
   <p>Amsterdam, Netherlands · Open to work</p>
 </footer>
 
-<!-- FILTER SCRIPT -->
 <script>
-  function filterProjects(cat, btn) {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    document.querySelectorAll('.project-card').forEach(card => {
-      if (cat === 'all' || card.dataset.cat === cat) {
-        card.classList.remove('hidden');
-      } else {
-        card.classList.add('hidden');
-      }
-    });
-  }
+function filterProjects(cat,btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.project-card').forEach(card=>{
+    if(cat==='all'||card.dataset.cat===cat){card.classList.remove('hidden')}
+    else{card.classList.add('hidden')}
+  });
+}
 </script>
-
 </body>
 </html>
