@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Murad Bin Inam Tarar — Robotics & Automation Engineer</title>
+<title>Murad Bin Inam Tarar — Robotics &amp; Automation Engineer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
     --bg:#09090b; --bg2:#111115; --bg3:#1a1a20;
     --line:rgba(255,255,255,0.06); --line2:rgba(255,255,255,0.11);
     --accent:#00e5a0; --text:#e8eaed; --text2:#8a9099; --text3:#50555f;
-    --mono:'DM Mono',monospace; --sans:'Syne',sans-serif; --rad:3px;
+    --mono:'DM Mono',monospace; --sans:'Plus Jakarta Sans',sans-serif; --rad:3px;
   }
   html { scroll-behavior: smooth; }
   body { background:var(--bg); color:var(--text); font-family:var(--sans); font-size:16px; line-height:1.6; overflow-x:hidden; }
@@ -29,7 +29,7 @@
   }
   .nav-logo { font-family:var(--mono); font-size:12px; color:var(--accent); letter-spacing:0.1em; text-decoration:none; }
   .nav-links { display:flex; gap:2rem; list-style:none; }
-  .nav-links a { font-family:var(--mono); font-size:11px; color:var(--text2); text-decoration:none; letter-spacing:0.07em; transition:color 0.2s; }
+  .nav-links a { font-family:var(--mono); font-size:11px; color:var(--text2); text-decoration:none; letter-spacing:0.07em; transition:color 0.2s; text-transform:capitalize; }
   .nav-links a:hover { color:var(--accent); }
   .hero {
     position:relative; z-index:1; min-height:100vh;
@@ -62,8 +62,8 @@
   .stat-label { font-family:var(--mono); font-size:10px; color:var(--text3); letter-spacing:0.08em; margin-top:4px; }
   section { position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:5rem 3rem; }
   .divider { max-width:1100px; margin:0 auto; padding:0 3rem; height:1px; background:var(--line); position:relative; z-index:1; }
-  .section-eye { font-family:var(--mono); font-size:10px; color:var(--accent); letter-spacing:0.2em; text-transform:uppercase; margin-bottom:0.6rem; display:flex; align-items:center; gap:0.6rem; }
-  .section-eye::before { content:''; display:block; width:20px; height:1px; background:var(--accent); }
+  .section-eye { font-family:var(--mono); font-size:10px; color:var(--accent); letter-spacing:0.2em; text-transform:uppercase; margin-bottom:0.6rem; display:flex; align-items:center; gap:0.6rem; overflow:visible; padding-bottom:2px; line-height:1.6; }
+  .section-eye::before { content:''; display:block; width:20px; height:1px; background:var(--accent); flex-shrink:0; }
   h2 { font-size:clamp(1.6rem,3vw,2.4rem); font-weight:700; letter-spacing:-0.02em; margin-bottom:0.75rem; }
   .section-intro { font-size:0.9rem; color:var(--text2); max-width:600px; margin-bottom:2.5rem; line-height:1.7; }
   .filter-row { display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:2rem; }
@@ -80,7 +80,7 @@
   .placeholder-icon { width:32px; height:32px; opacity:0.15; }
   .placeholder-text { font-family:var(--mono); font-size:10px; color:var(--text3); letter-spacing:0.1em; text-transform:uppercase; }
   .project-meta { display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem; }
-  .project-cat { font-family:var(--mono); font-size:10px; color:var(--text3); letter-spacing:0.1em; text-transform:uppercase; }
+  .project-cat { font-family:var(--mono); font-size:10px; color:var(--text3); letter-spacing:0.1em; text-transform:uppercase; overflow:visible; padding-bottom:1px; line-height:1.6; }
   .project-cat.robotics { color:#00e5a0; }
   .project-cat.embedded { color:#7c6aff; }
   .project-cat.systems  { color:#f0a050; }
@@ -93,7 +93,7 @@
   .project-highlight strong { color:var(--text2); font-weight:400; }
   .skills-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1.25rem; }
   .skill-group { background:var(--bg2); border:1px solid var(--line); padding:1.35rem; border-radius:var(--rad); }
-  .skill-group-title { font-family:var(--mono); font-size:10px; color:var(--accent); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:0.9rem; padding-bottom:0.7rem; border-bottom:1px solid var(--line); }
+  .skill-group-title { font-family:var(--mono); font-size:10px; color:var(--accent); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:0.9rem; padding-bottom:0.7rem; border-bottom:1px solid var(--line); overflow:visible; line-height:1.6; }
   .skill-list { display:flex; flex-wrap:wrap; gap:0.35rem; }
   .skill-chip { font-family:var(--mono); font-size:11px; padding:3px 9px; background:var(--bg3); border:1px solid var(--line); border-radius:var(--rad); color:var(--text2); }
   .timeline { position:relative; padding-left:1.5rem; }
@@ -178,8 +178,8 @@
 <div class="hero">
   <div class="hero-eyebrow">Mechatronics &amp; Robotics Engineer</div>
   <div class="hero-name">
-    <span class="first">Murad</span>
-    <span class="rest">Bin Inam Tarar</span>
+    <span class="first">Murad Bin Inam</span>
+    <span class="rest">Tarar</span>
   </div>
   <p class="hero-sub">I build automated systems that work in the real world, from Siemens PLC panels and WinCC SCADA to ROS2 robotics platforms and custom mechatronic hardware. Based in Amsterdam, Netherlands.</p>
   <div class="hero-tags">
