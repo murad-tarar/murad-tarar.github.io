@@ -127,7 +127,7 @@
   .project-card:hover { background:var(--bg3); }
   .project-card.hidden { display:none; }
   .project-photo { width:100%; height:220px; margin-bottom:1.25rem; border-radius:var(--rad); overflow:hidden; background:#0d0d10; border:1px solid var(--line); flex-shrink:0; display:flex; align-items:center; justify-content:center; }
-  .project-photo img { max-width:100%; max-height:220px; width:auto; height:auto; object-fit:contain; display:block; transition:transform 0.3s; }
+  .project-photo img, .project-photo .proj-img { max-width:100%; max-height:220px; width:auto; height:auto; object-fit:contain !important; object-position:center !important; display:block; transition:transform 0.3s; }
   .project-card:hover .project-photo img { transform:scale(1.02); }
   .project-gallery { display:flex; gap:6px; margin-bottom:1rem; overflow-x:auto; padding-bottom:4px; scrollbar-width:thin; scrollbar-color:var(--line2) transparent; }
   .project-gallery::-webkit-scrollbar { height:3px; }
@@ -451,7 +451,7 @@
       <div class="project-photo">
         <img src="arm-1.png" alt="5-DOF Robotic Arm" style="width:100%;height:100%;object-fit:cover;display:block;">
       </div>
-      <div class="project-gallery"><img src="arm-1.png" alt="arm 1" onclick="this.closest('.project-card').querySelector('.project-photo img').src=this.src"><img src="arm-2.png" alt="arm 2" onclick="this.closest('.project-card').querySelector('.project-photo img').src=this.src"><img src="arm-3.png" alt="arm 3" onclick="this.closest('.project-card').querySelector('.project-photo img').src=this.src"><img src="arm-4.png" alt="arm 4" onclick="this.closest('.project-card').querySelector('.project-photo img').src=this.src"><img src="arm-5.png" alt="arm 5" onclick="this.closest('.project-card').querySelector('.project-photo img').src=this.src"><img src="arm-6.png" alt="arm 6" onclick="this.closest('.project-card').querySelector('.project-photo img').src=this.src"><img src="arm-7.png" alt="arm 7" onclick="this.closest('.project-card').querySelector('.project-photo img').src=this.src"></div>
+      <div class="project-gallery"><img src="arm-1.png" alt="arm 1" onclick="swapImage(this, this.src)"><img src="arm-2.png" alt="arm 2" onclick="swapImage(this, this.src)"><img src="arm-3.png" alt="arm 3" onclick="swapImage(this, this.src)"><img src="arm-4.png" alt="arm 4" onclick="swapImage(this, this.src)"><img src="arm-5.png" alt="arm 5" onclick="swapImage(this, this.src)"><img src="arm-6.png" alt="arm 6" onclick="swapImage(this, this.src)"><img src="arm-7.png" alt="arm 7" onclick="swapImage(this, this.src)"></div>
       <div class="project-meta"><span class="project-cat robotics">Robotics</span><span class="project-date">Jun – Sep 2023</span></div>
       <div class="project-name">Multi-Control 5-DOF Robotic Arm</div>
       <div class="project-desc">Fully functional 5-DOF robotic manipulator using MG996R and SG90 servo motors. All structural components designed in SolidWorks and 3D-printed in PLA. Three independent control modes: Bluetooth Android app (MIT App Inventor) for real-time and sequence-based motion, SD card automation for pre-programmed task execution, and physical push buttons for manual joint control.</div>
@@ -461,7 +461,7 @@
 
     <!-- PROJECT 2: TO ADD PHOTO <img src="ros-trajectory.jpg" alt="ROS Trajectory"> -->
     <div class="project-card" data-cat="robotics">
-      <div class="project-photo"><img src="ros-1.png" alt="ROS Trajectory Planning" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
+      <div class="project-photo"><img src="ros-1.png" alt="ROS Trajectory Planning" class="proj-img"></div>
       <div class="project-meta"><span class="project-cat robotics">Robotics</span><span class="project-date">Mar – Apr 2023</span></div>
       <div class="project-name">Trajectory Planning with ROS and MoveIt</div>
       <div class="project-desc">Developed ROS packages to automate point-to-point cubic trajectory generation and Cartesian path planning for the Franka Panda robot arm using MoveIt. Real-time joint state visualisation via rqt_plot and RViz. Applicable to industrial cobot integration and autonomous manipulation tasks.</div>
@@ -481,7 +481,7 @@
 
     <!-- PROJECT 4: TO ADD PHOTO <img src="social-trust.jpg" alt="Social Trust"> -->
     <div class="project-card" data-cat="robotics">
-      <div class="project-photo"><img src="social-trust-1.png" alt="Social Trust Modeling" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
+      <div class="project-photo"><img src="social-trust-1.png" alt="Social Trust Modeling" class="proj-img"></div>
       <div class="project-meta"><span class="project-cat robotics">Cognitive Robotics</span><span class="project-date">Mar 2023</span></div>
       <div class="project-name">Social Trust Modeling in Human-Robot Interaction</div>
       <div class="project-desc">Simulated a child psychology experiment in ROS using Bayesian networks to model how social trust influences delayed gratification decisions. Developed ROS nodes for mood prediction, preference checking, and gratification delay, replicating known human behavioural patterns through robotic reasoning.</div>
@@ -491,8 +491,8 @@
 
     <!-- PROJECT 5: TO ADD PHOTO <img src="two-link-sim.jpg" alt="Two-Link Sim"> -->
     <div class="project-card" data-cat="robotics">
-      <div class="project-photo"><img src="two-link-1.png" alt="Two-Link Simulation" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
-      <div class="project-gallery"><img src="two-link-1.png" alt="sim 1" onclick="this.closest('.project-card').querySelector('.project-photo img').src=this.src"><img src="two-link-2.png" alt="sim 2" onclick="this.closest('.project-card').querySelector('.project-photo img').src=this.src"><img src="two-link-3.png" alt="sim 3" onclick="this.closest('.project-card').querySelector('.project-photo img').src=this.src"><img src="two-link-4.png" alt="sim 4" onclick="this.closest('.project-card').querySelector('.project-photo img').src=this.src"></div>
+      <div class="project-photo"><img src="two-link-1.png" alt="Two-Link Simulation" class="proj-img"></div>
+      <div class="project-gallery"><img src="two-link-1.png" alt="sim 1" onclick="swapImage(this, this.src)"><img src="two-link-2.png" alt="sim 2" onclick="swapImage(this, this.src)"><img src="two-link-3.png" alt="sim 3" onclick="swapImage(this, this.src)"><img src="two-link-4.png" alt="sim 4" onclick="swapImage(this, this.src)"></div>
       <div class="project-meta"><span class="project-cat robotics">Control Systems</span><span class="project-date">Nov – Dec 2022</span></div>
       <div class="project-name">Two-Link Planar Manipulator Simulation</div>
       <div class="project-desc">Simulated a two-link robotic arm in MATLAB/Simulink using computed torque control for accurate joint motion under gravity and inertia effects. Modelled full system dynamics using Lagrangian equations and implemented a real-time closed-loop control system.</div>
@@ -502,8 +502,8 @@
 
     <!-- PROJECT 6: TO ADD PHOTO <img src="wind-turbine.jpg" alt="Wind Turbine"> -->
     <div class="project-card" data-cat="robotics">
-      <div class="project-photo"><img src="wind-1.png" alt="Wind Turbine Control" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
-      <div class="project-gallery"><img src="wind-1.png" alt="wind 1" onclick="this.closest('.project-card').querySelector('.project-photo img').src=this.src"><img src="wind-2.png" alt="wind 2" onclick="this.closest('.project-card').querySelector('.project-photo img').src=this.src"><img src="wind-3.png" alt="wind 3" onclick="this.closest('.project-card').querySelector('.project-photo img').src=this.src"><img src="wind-4.png" alt="wind 4" onclick="this.closest('.project-card').querySelector('.project-photo img').src=this.src"></div>
+      <div class="project-photo"><img src="wind-1.png" alt="Wind Turbine Control" class="proj-img"></div>
+      <div class="project-gallery"><img src="wind-1.png" alt="wind 1" onclick="swapImage(this, this.src)"><img src="wind-2.png" alt="wind 2" onclick="swapImage(this, this.src)"><img src="wind-3.png" alt="wind 3" onclick="swapImage(this, this.src)"><img src="wind-4.png" alt="wind 4" onclick="swapImage(this, this.src)"></div>
       <div class="project-meta"><span class="project-cat robotics">Control Systems</span><span class="project-date">Oct – Nov 2022</span></div>
       <div class="project-name">Wind Turbine Yaw Control System</div>
       <div class="project-desc">Simulated a gyroscope-based yaw control system for a wind turbine in MATLAB/Simulink, integrating PID control, PWM signal generation, H-bridge motor driver, and DC motor model. Modelled sensor noise, bias compensation, and real-time actuation loop for enhanced reliability. Control methodology directly applicable to industrial PLC-based process control.</div>
@@ -513,8 +513,8 @@
 
     <!-- PROJECT 7: TO ADD PHOTO <img src="route-planner.jpg" alt="Route Planner"> -->
     <div class="project-card" data-cat="robotics">
-      <div class="project-photo"><img src="route-1.png" alt="AI Route Planner" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
-      <div class="project-gallery"><img src="route-1.png" alt="route 1" onclick="this.closest('.project-card').querySelector('.project-photo img').src=this.src"><img src="route-2.png" alt="route 2" onclick="this.closest('.project-card').querySelector('.project-photo img').src=this.src"></div>
+      <div class="project-photo"><img src="route-1.png" alt="AI Route Planner" class="proj-img"></div>
+      <div class="project-gallery"><img src="route-1.png" alt="route 1" onclick="swapImage(this, this.src)"><img src="route-2.png" alt="route 2" onclick="swapImage(this, this.src)"></div>
       <div class="project-meta"><span class="project-cat robotics">AI and Algorithms</span><span class="project-date">Nov 2022</span></div>
       <div class="project-name">AI Route Planner and Genetic Algorithm</div>
       <div class="project-desc">Graph-based route planner using DFS, BFS, and UCS on London Underground data with zone-aware heuristics and line-switch penalties. UCS reduced node visits from 231 (DFS) to just 5, a 97.8% reduction. Also implemented a Genetic Algorithm that cracked a 10-character secret string in approximately 100 generations through tuned mutation rate and population size optimisation.</div>
@@ -524,7 +524,7 @@
 
     <!-- PROJECT 8: TO ADD PHOTO <img src="access-control.jpg" alt="Access Control"> -->
     <div class="project-card" data-cat="embedded">
-      <div class="project-photo"><img src="access-control-1.png" alt="AI Access Control" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
+      <div class="project-photo"><img src="access-control-1.png" alt="AI Access Control" class="proj-img"></div>
       <div class="project-meta"><span class="project-cat embedded">Embedded AI</span><span class="project-date">Apr – Jul 2020</span></div>
       <div class="project-name">AI-Enabled Access Control System</div>
       <div class="project-desc">IoT-based access control for real-time face mask detection and non-contact temperature screening during COVID-19. Integrated MLX90614 IR sensor with Pi Camera V2 on Raspberry Pi 4. CNN-based MobileNet deep learning model trained on 2,000+ labelled images achieving 98.9% detection accuracy. Real-time Tkinter GUI with solenoid lock, buzzer, and LED outputs. Offline edge computing capability with SQLite local logging.</div>
@@ -534,8 +534,8 @@
 
     <!-- PROJECT 9: TO ADD PHOTO <img src="ventilator.jpg" alt="Emergency Ventilator"> -->
     <div class="project-card" data-cat="embedded">
-      <div class="project-photo"><img src="ventilator-1.png" alt="Emergency Ventilator" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
-      <div class="project-gallery"><img src="ventilator-1.png" alt="ventilator 1" onclick="this.closest('.project-card').querySelector('.project-photo img').src=this.src"><img src="ventilator-2.jpg" alt="ventilator 2" onclick="this.closest('.project-card').querySelector('.project-photo img').src=this.src"></div>
+      <div class="project-photo"><img src="ventilator-1.png" alt="Emergency Ventilator" class="proj-img"></div>
+      <div class="project-gallery"><img src="ventilator-1.png" alt="ventilator 1" onclick="swapImage(this, this.src)"><img src="ventilator-2.jpg" alt="ventilator 2" onclick="swapImage(this, this.src)"></div>
       <div class="project-meta"><span class="project-cat embedded">Medical Mechatronics</span><span class="project-date">Jun – Jul 2020</span></div>
       <div class="project-name">Emergency Ventilator — COVID-19 Rapid Prototype</div>
       <div class="project-desc">Low-cost emergency ventilator based on the Apollo BVM design, engineered under COVID-19 resource constraints. Python-based motor control automates Ambu bag compression. Integrated flow sensor for real-time air delivery monitoring. Touchscreen HMI for setting BPM, tidal volume, and pressure curves with user-adjustable inhalation/exhalation cycles and safety limits.</div>
@@ -545,8 +545,8 @@
 
     <!-- PROJECT 10: TO ADD PHOTO <img src="fleet-management.jpg" alt="Fleet Management"> -->
     <div class="project-card" data-cat="embedded">
-      <div class="project-photo"><img src="fleet-1.jpg" alt="Fleet Management" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
-      <div class="project-gallery"><img src="fleet-1.jpg" alt="fleet 1" onclick="this.closest('.project-card').querySelector('.project-photo img').src=this.src"><img src="fleet-2.jpg" alt="fleet 2" onclick="this.closest('.project-card').querySelector('.project-photo img').src=this.src"><img src="fleet-3.jpg" alt="fleet 3" onclick="this.closest('.project-card').querySelector('.project-photo img').src=this.src"></div>
+      <div class="project-photo"><img src="fleet-1.jpg" alt="Fleet Management" class="proj-img"></div>
+      <div class="project-gallery"><img src="fleet-1.jpg" alt="fleet 1" onclick="swapImage(this, this.src)"><img src="fleet-2.jpg" alt="fleet 2" onclick="swapImage(this, this.src)"><img src="fleet-3.jpg" alt="fleet 3" onclick="swapImage(this, this.src)"></div>
       <div class="project-meta"><span class="project-cat embedded">IoT and Systems</span><span class="project-date">Mar – Jun 2020</span></div>
       <div class="project-name">Vehicle Fleet Management and Predictive Maintenance</div>
       <div class="project-desc">IoT-based fleet tracking system for a 350+ vehicle military fleet, improving operational efficiency by 20%. Integrated driver logging, speed and behaviour monitoring, and real-time diagnostics. Implemented CMMS-based predictive and periodic maintenance scheduling using vehicle telemetry data, significantly reducing unplanned downtime.</div>
@@ -556,8 +556,8 @@
 
     <!-- PROJECT 11: TO ADD PHOTO <img src="drone.jpg" alt="Autonomous Drone"> -->
     <div class="project-card" data-cat="embedded">
-      <div class="project-photo"><img src="drone-1.jpg" alt="Autonomous Drone" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
-      <div class="project-gallery"><img src="drone-1.jpg" alt="drone 1" onclick="this.closest('.project-card').querySelector('.project-photo img').src=this.src"><img src="drone-2.png" alt="drone 2" onclick="this.closest('.project-card').querySelector('.project-photo img').src=this.src"><img src="drone-3.png" alt="drone 3" onclick="this.closest('.project-card').querySelector('.project-photo img').src=this.src"></div>
+      <div class="project-photo"><img src="drone-1.jpg" alt="Autonomous Drone" class="proj-img"></div>
+      <div class="project-gallery"><img src="drone-1.jpg" alt="drone 1" onclick="swapImage(this, this.src)"><img src="drone-2.png" alt="drone 2" onclick="swapImage(this, this.src)"><img src="drone-3.png" alt="drone 3" onclick="swapImage(this, this.src)"></div>
       <div class="project-meta"><span class="project-cat embedded">UAV Systems</span><span class="project-date">Jun 2016 – Sep 2017</span></div>
       <div class="project-name">Autonomous Animal-Tracking Drone</div>
       <div class="project-desc">Built a fully autonomous quadcopter from scratch for real-time animal tracking. Hardware: ArduPilot APM 2.6 flight controller, Arduino Nano, IMU MPU-6000, BLDC brushless motors with ESCs, RF control modules, and 4S LiPo battery. Android app (OpenCV) for real-time image processing using HSV filtering, Gaussian blur, and binary segmentation for colour-based target detection. Affine transformation calculates object displacement in x-y plane. Bluetooth relay transmits movement commands generating PWM signals for pitch and roll. PID and LQR controllers for autonomous flight stabilisation. 23-minute endurance after systematic weight-to-thrust ratio optimisation. Prototype to field-deployed system built entirely from scratch across mechanical, electronics, firmware and software.</div>
@@ -567,8 +567,8 @@
 
     <!-- PROJECT 12: TO ADD PHOTO <img src="weapon-automation.jpg" alt="Weapon Automation"> -->
     <div class="project-card" data-cat="systems">
-      <div class="project-photo"><img src="weapon-1.jpg" alt="Weapon System Automation" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
-      <div class="project-gallery"><img src="weapon-1.jpg" alt="weapon 1" onclick="this.closest('.project-card').querySelector('.project-photo img').src=this.src"><img src="weapon-2.jpg" alt="weapon 2" onclick="this.closest('.project-card').querySelector('.project-photo img').src=this.src"><img src="weapon-3.jpg" alt="weapon 3" onclick="this.closest('.project-card').querySelector('.project-photo img').src=this.src"><img src="weapon-4.jpg" alt="weapon 4" onclick="this.closest('.project-card').querySelector('.project-photo img').src=this.src"></div>
+      <div class="project-photo"><img src="weapon-1.jpg" alt="Weapon System Automation" class="proj-img"></div>
+      <div class="project-gallery"><img src="weapon-1.jpg" alt="weapon 1" onclick="swapImage(this, this.src)"><img src="weapon-2.jpg" alt="weapon 2" onclick="swapImage(this, this.src)"><img src="weapon-3.jpg" alt="weapon 3" onclick="swapImage(this, this.src)"><img src="weapon-4.jpg" alt="weapon 4" onclick="swapImage(this, this.src)"></div>
       <div class="project-meta"><span class="project-cat systems">Defence Automation</span><span class="project-date">Jan – Oct 2019</span></div>
       <div class="project-name">Weapon System Automation — Armoured Vehicles</div>
       <div class="project-desc">Designed and deployed automation solutions for weapon systems on armoured vehicles, improving targeting accuracy and operator safety by 25%. Integrated mechatronic control systems, actuators, and embedded software for stabilised aiming and remote operation. Collaborated with cross-functional teams for system integration, field testing, and validation under combat-simulated conditions.</div>
@@ -578,8 +578,8 @@
 
     <!-- PROJECT 13: TO ADD PHOTO <img src="repair-facility.jpg" alt="Repair Facility"> -->
     <div class="project-card" data-cat="systems">
-      <div class="project-photo"><img src="facility-1.jpg" alt="Repair Facility" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
-      <div class="project-gallery"><img src="facility-1.jpg" alt="facility 1" onclick="this.closest('.project-card').querySelector('.project-photo img').src=this.src"><img src="facility-2.jpg" alt="facility 2" onclick="this.closest('.project-card').querySelector('.project-photo img').src=this.src"><img src="facility-3.jpg" alt="facility 3" onclick="this.closest('.project-card').querySelector('.project-photo img').src=this.src"><img src="facility-4.jpg" alt="facility 4" onclick="this.closest('.project-card').querySelector('.project-photo img').src=this.src"></div>
+      <div class="project-photo"><img src="facility-1.jpg" alt="Repair Facility" class="proj-img"></div>
+      <div class="project-gallery"><img src="facility-1.jpg" alt="facility 1" onclick="swapImage(this, this.src)"><img src="facility-2.jpg" alt="facility 2" onclick="swapImage(this, this.src)"><img src="facility-3.jpg" alt="facility 3" onclick="swapImage(this, this.src)"><img src="facility-4.jpg" alt="facility 4" onclick="swapImage(this, this.src)"></div>
       <div class="project-meta"><span class="project-cat systems">Facility Engineering</span><span class="project-date">Nov 2020 – Aug 2021</span></div>
       <div class="project-name">Military Armoured Vehicle Repair Facility</div>
       <div class="project-desc">Led full design, planning, and construction of a military-grade repair facility for armoured vehicles, reducing maintenance downtime by 25%. Calculated compressed air system requirements including compressor sizing and pneumatic tool support. Integrated overhead crane, winches, and custom test benches for heavy-duty service operations. Managed £250K+ procurement across 12 suppliers, achieving 11% cost savings through negotiation and process auditing.</div>
@@ -700,6 +700,18 @@
 </footer>
 
 <script>
+function swapImage(thumb, src) {
+  var card = thumb.closest('.project-card');
+  var mainImg = card.querySelector('.project-photo img');
+  mainImg.src = src;
+  mainImg.style.maxWidth = '100%';
+  mainImg.style.maxHeight = '220px';
+  mainImg.style.width = 'auto';
+  mainImg.style.height = 'auto';
+  mainImg.style.objectFit = 'contain';
+  mainImg.style.objectPosition = 'center';
+  mainImg.style.display = 'block';
+}
 function filterProjects(cat,btn){
   document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
